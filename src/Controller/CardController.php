@@ -47,20 +47,20 @@ class CardController extends AbstractController
      */
     public function draw(SessionInterface $session, $number = 1): Response
     {
+
         if (empty($session->get('drawnCards'))) {
             $session->set('drawnCards', []);
         }
+        $amountOfDrawnCards = sizeof($session->get('drawnCards'));
         $newDeck = new Deck();
-        if ($number > 52) {
-            return $this->render('card/draw.html.twig', ['data' => ["Noob", "wat"]]);
-        }
-        if (sizeof($session->get('drawnCards')) < 52) {
-            $cardToDraw = $newDeck->drawCard($session, $number);
-            return $this->render('card/draw.html.twig', ['data' => $cardToDraw]);
+
+        if ($amountOfDrawnCards < 52) {
+            $cardToDraw = $newDeck->drawCard($session, $number, $amountOfDrawnCards);
+            return $this->render('card/draw.html.twig', ['data' => $cardToDraw, 'numOfCards' => $amountOfDrawnCards, 'cardToDraw' => $number]);
         }
 
         $drawnCards = $session->get('drawnCards');
-        return $this->render('card/draw.html.twig', ['data' => [$drawnCards, 0]]);
+        return $this->render('card/draw.html.twig', ['data' => [$drawnCards, 0], 'numOfCards' => $amountOfDrawnCards, 'cardToDraw' => $number]);
     }
 
     /**

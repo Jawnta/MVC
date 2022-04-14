@@ -83,10 +83,15 @@ class Deck
         return $playerHand;
     }
 
-    public function drawCard(SessionInterface $session, $number): array
+    public function drawCard(SessionInterface $session, $number, $amountOfDrawnCards): array
     {
+
         $shuffledDeck = $this->getCurrentDeck($session);
         $drawnCards = $session->get('drawnCards');
+        if ($number + $amountOfDrawnCards > 52)
+        {
+            return $drawnCards;
+        }
         for ($i = 0; $i < $number; $i++) {
             $drawnCards[] = array_pop($shuffledDeck);
         }

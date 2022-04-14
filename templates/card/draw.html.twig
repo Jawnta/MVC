@@ -5,6 +5,16 @@
 {% block content %}
 
     <h1>Drawn cards from a shuffled deck</h1>
+    {% if numOfCards + cardToDraw > 52 %}
+    <p>There is 52 cards in the deck, you have drawn {{ numOfCards }} and you think you can draw
+    another {% if cardToDraw == 1 %}card? {% else %} {{ cardToDraw }}  cards? {% endif %}</p>
+    <div class="draw-card">
+        {% for card in data[0] %}
+            <img src="{{ asset('img/cards/' ~ card.imgPath ) }}" alt="{{ card.imgPath }}">
+        {% endfor %}
+    </div>
+
+{% else %}
     <div class="draw-card">
         {% for card in data[0] %}
             <img src="{{ asset('img/cards/' ~ card.imgPath ) }}" alt="{{ card.imgPath }}">
@@ -20,5 +30,5 @@
         {% endfor %}
 
     </div>
-
+{% endif %}
 {% endblock %}
