@@ -60,7 +60,7 @@ class CardController extends AbstractController
         }
 
         $drawnCards = $session->get('drawnCards');
-        return $this->render('card/draw.html.twig', ['data' => [$drawnCards, 0], 'numOfCards' => $amountOfDrawnCards, 'cardToDraw' => $number]);
+        return $this->render('card/draw.html.twig', ['data' => $drawnCards, 'numOfCards' => $amountOfDrawnCards, 'cardToDraw' => $number]);
     }
 
     /**
