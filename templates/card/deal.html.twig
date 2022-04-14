@@ -12,7 +12,7 @@
         {% for i in 0..numOfPlayers %}
         <p>Player #{{ i + 1 }}</p>
         {% for card in data[0][i] %}
-            <img src="/img/cards/{{ card.imgPath }}" alt="{{ card.imgPath }}">
+            <img src="{{ asset('img/cards/' ~ card.imgPath ) }}" alt="{{ card.imgPath }}">
 
         {% endfor %}
         {% endfor %}
@@ -21,7 +21,7 @@
     <h1>Rest of the deck</h1>
     <div class="card-content">
         {% for card in data[1] %}
-            <img src="/img/cards/{{ card.imgPath }}" alt="{{ card.imgPath }}">
+            <img src="{{ asset('img/cards/' ~ card.imgPath ) }}" alt="{{ card.imgPath }}">
         {% endfor %}
 
     </div>

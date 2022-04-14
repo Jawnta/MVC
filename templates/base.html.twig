@@ -4,11 +4,11 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="favicon.ico">
-        <link rel="stylesheet" href="/css/style.css"/>
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
     </head>
     <body>
         <div>
-        <img src="{{ absolute_url("/img/header_mvc.png") }}">
+        <img src="{{ asset("img/header_mvc.png") }}" alt="header">
         </div>
         
         <div class="nav">
@@ -43,7 +43,7 @@
         <div class="footer">
         Jonatan Robertsson, jorp21@student.bth.se
         <div class="logos">
-            <a href="https://github.com/Jawnta/MVC"><img src="{{ absolute_url("/img/github_small.png") }}" alt="gh"></a>
+            <a href="https://github.com/Jawnta/MVC"><img src="{{ asset("img/github_small.png") }}" alt="gh"></a>
         </div>
         </div>
     </body>

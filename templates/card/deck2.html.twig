@@ -8,7 +8,7 @@
     <div class="card-content">
 
         {% for card in deck %}
-            <img src="/img/cards/{{ card.imgPath }}" alt="{{ card.imgPath }}">
+            <img src="{{ asset('img/cards/' ~ card.imgPath ) }}" alt="{{ card.imgPath }}">
         {% endfor %}
 
     </div>

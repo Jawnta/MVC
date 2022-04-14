@@ -7,7 +7,7 @@
     <h1>Drawn cards from a shuffled deck</h1>
     <div class="draw-card">
         {% for card in data[0] %}
-            <img src="/img/cards/{{ card.imgPath }}" alt="{{ card.imgPath }}">
+            <img src="{{ asset('img/cards/' ~ card.imgPath ) }}" alt="{{ card.imgPath }}">
         {% endfor %}
     </div>
     <div class="card-nav">
@@ -16,7 +16,7 @@
     <h1>Rest of the deck</h1>
     <div class="card-content">
         {% for card in data[1] %}
-            <img src="/img/cards/{{ card.imgPath }}" alt="{{ card.imgPath }}">
+            <img src="{{ asset('img/cards/' ~ card.imgPath ) }}" alt="{{ card.imgPath }}">
         {% endfor %}
 
     </div>

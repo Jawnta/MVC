@@ -47,6 +47,9 @@ class CardController extends AbstractController
      */
     public function draw(SessionInterface $session, $number = 1): Response
     {
+        if (empty($session->get('drawnCards'))) {
+            $session->set('drawnCards', []);
+        }
         $newDeck = new Deck();
         if ($number > 52) {
             return $this->render('card/draw.html.twig', ['data' => ["Noob", "wat"]]);
