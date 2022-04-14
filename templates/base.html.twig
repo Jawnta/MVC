@@ -4,11 +4,11 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="favicon.ico">
-        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="/css/style.css"/>
     </head>
     <body>
         <div>
-        <img src="{{ absolute_url("img/header_mvc.png") }}">
+        <img src="{{ absolute_url("/img/header_mvc.png") }}">
         </div>
         
         <div class="nav">
@@ -25,6 +25,14 @@
                     <a href="{{ path("about") }}">About</a>
                     <div class="hover-line"></div>
                 </li>
+                <li>
+                    <a href="{{ path("card") }}">Card</a>
+                    <div class="hover-line"></div>
+                </li>
+                <li>
+                    <a href="{{ path("reset") }}">Reset session</a>
+                    <div class="hover-line"></div>
+                </li>
             </ul>
         </div>
         <div class="main">
@@ -35,7 +43,7 @@
         <div class="footer">
         Jonatan Robertsson, jorp21@student.bth.se
         <div class="logos">
-            <a href="https://github.com/Jawnta/MVC"><img src="{{ absolute_url("img/github_small.png") }}" alt="gh"></a>
+            <a href="https://github.com/Jawnta/MVC"><img src="{{ absolute_url("/img/github_small.png") }}" alt="gh"></a>
         </div>
         </div>
     </body>

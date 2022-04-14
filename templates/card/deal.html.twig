@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Card{% endblock %}
+
+{% block content %}
+
+    <h1>Base Game</h1>
+    <div class="players">
+        {% if (numOfCards * (numOfPlayers + 1)) > 52 %}
+        <p>You cant deal {{ numOfCards }} cards each to {{ numOfPlayers + 1}} players, deck only contains 52 cards.</p>
+        {% else %}
+        {% for i in 0..numOfPlayers %}
+        <p>Player #{{ i + 1 }}</p>
+        {% for card in data[0][i] %}
+            <img src="/img/cards/{{ card.imgPath }}" alt="{{ card.imgPath }}">
+
+        {% endfor %}
+        {% endfor %}
+        {% endif %}
+    </div>
+    <h1>Rest of the deck</h1>
+    <div class="card-content">
+        {% for card in data[1] %}
+            <img src="/img/cards/{{ card.imgPath }}" alt="{{ card.imgPath }}">
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

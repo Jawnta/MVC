@@ -3,62 +3,129 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h1>Redovisning av kursmoment</h1>
+    <h1>Redovisning av kursmoment</h1>
 
-<div>
-  <!-- Redovisningstext för kmom -->
+    <div>
+        <!-- Redovisningstext för kmom -->
         <h2>Kmom01</h2>
         <p>
-            Mina tidigare kunskaper och erfarenheter gällande objektorienterad programmering kommer direkt från tidigare kurser. Eftersom oopython var fokuserad på objektorientering så lärde jag mig konceptet och även hur man applicerar det i praktiken. Jag tycker inte det är speciellt märkligt att arbeta objektorienterad däremot kan jag tycka att vissa delar inom objektorientering är lite förvirrande som t.ex. när man ska göra klassdiagram och sätta pilar för komposition, kardinalitet m.m. 
+            Mina tidigare kunskaper och erfarenheter gällande objektorienterad programmering kommer direkt från tidigare
+            kurser. Eftersom oopython var fokuserad på objektorientering så lärde jag mig konceptet och även hur man
+            applicerar det i praktiken. Jag tycker inte det är speciellt märkligt att arbeta objektorienterad däremot
+            kan jag tycka att vissa delar inom objektorientering är lite förvirrande som t.ex. när man ska göra
+            klassdiagram och sätta pilar för komposition, kardinalitet m.m.
         </p>
         <p>
-            Det första jag tänker på när jag ser objektorienterad programmering är klasser och objekt. För att kunna programmera objektorienterat så behöver man veta vad de olika delarna är. Jag ser klassen som en "ritning" för objektet. I klassen defineras olika "properties" och när man gör en instans av klassen så kan varje instans istället ha olika värden. När det gäller PHPs modell för klasser och objekt så kan jag inte se någon större skillnad i strukturen från t.ex. python. Strukturen är mer eller mindre likadan förutom att syntaxen är annorlunda.
+            Det första jag tänker på när jag ser objektorienterad programmering är klasser och objekt. För att kunna
+            programmera objektorienterat så behöver man veta vad de olika delarna är. Jag ser klassen som en "ritning"
+            för objektet. I klassen defineras olika "properties" och när man gör en instans av klassen så kan varje
+            instans istället ha olika värden. När det gäller PHPs modell för klasser och objekt så kan jag inte se någon
+            större skillnad i strukturen från t.ex. python. Strukturen är mer eller mindre likadan förutom att syntaxen
+            är annorlunda.
         </p>
         <p>
-            Jag har kikat runt på koden och dess struktur och tycker det är ganska lätt att förstå. Hur man skapar routes och olika sidor är väldigt likt ramverk som vi tidigare använt, t.ex. flask och express. Eftersom det är väldigt likt i sättet hur man bygger hemsidorna så får jag en direkt uppfattning om hur jag ska strukturera upp min sida.
+            Jag har kikat runt på koden och dess struktur och tycker det är ganska lätt att förstå. Hur man skapar
+            routes och olika sidor är väldigt likt ramverk som vi tidigare använt, t.ex. flask och express. Eftersom det
+            är väldigt likt i sättet hur man bygger hemsidorna så får jag en direkt uppfattning om hur jag ska
+            strukturera upp min sida.
         </p>
         <p>
-            Det första positiva jag såg i artikeln "PHP The Right Way" är att den håller sig uppdaterad om vad som är "best practices at the present time". Så om man skulle behöva söka fram information så kan det bli fel om man använder utdaterade metoder för att lösa sitt problem därav är det väldigt positivt att artikeln håller sig uppdaterad. Utöver detta så har jag kollat igenom artikeln och det finns guider om hur man installerar vissa verktyg och även bra förklaringar till dem.
+            Det första positiva jag såg i artikeln "PHP The Right Way" är att den håller sig uppdaterad om vad som är
+            "best practices at the present time". Så om man skulle behöva söka fram information så kan det bli fel om
+            man använder utdaterade metoder för att lösa sitt problem därav är det väldigt positivt att artikeln håller
+            sig uppdaterad. Utöver detta så har jag kollat igenom artikeln och det finns guider om hur man installerar
+            vissa verktyg och även bra förklaringar till dem.
         </p>
         <p>
-            Min TIL för detta kursmoment är hur man sätter upp en sida med hjälp av ramverket symfony. Förkunskaper och tidigare erfarenheter gjorde att det blev enkelt att förstå strukturen och man kunde enkelt skapa routes till andra sidor.
+            Min TIL för detta kursmoment är hur man sätter upp en sida med hjälp av ramverket symfony. Förkunskaper och
+            tidigare erfarenheter gjorde att det blev enkelt att förstå strukturen och man kunde enkelt skapa routes
+            till andra sidor.
         </p>
 
-    <!-- Redovisningstext för kmom -->
+        <!-- Redovisningstext för kmom -->
         <h2>Kmom02</h2>
         <p>
-            Redovisningstext för kmom
+            Inom objektorientering så använder man arv i klasser för att bl.a. slippa implementera om all funktionalitet
+            på nytt. Detta innebär också att man kan implementera extra funktionalitet i subklassen. Ett exempel på
+            detta är i min klass "DeckWithJokers" där klass Deck ärvs. I subklassen så lägger jag till två extra kort i
+            form av jokrar. Istället för att skriva om hela funktionen så ärvs den via parent klassen och jag kan
+            återanvända funktionen och samtidigt implementera extra funktionalitet.
+        </p>
+        <p>
+            Komposition är ett koncept där ett objekt skapar ett annat objekt. Detta innebär att det ena objektet har
+            "ägandeskap" över det andra objektet, med andra ord så kan det "ägda" objektet in existera utanför det
+            ägande objektet.
+        </p>
+        <p>
+            Enligt min uppfattning så använder man interfaces för att specificera vilka metoder som måste implementeras
+            i en klass. Jag är inte helt införstådd om hur man använder interfaces ännu och skulle behöva läsa mer om
+            det och använda det i praktiken för att få en bättre förståelse.
+        </p>
+        <p>
+            Eftersom i PHP så kan en klass enbart ärva från en parent klass så om man vill använda sig av flera arv så
+            använder man sig av traits. Med andra ord så undviker traits problem med flera arv.
         </p>
 
-    <!-- Redovisningstext för kmom -->
+        <p>
+            I denna uppgift så började jag med att skapa deck klassen och se till så jag kunde få ut alla kort på
+            hemsidan. Jag skapade först två arrayer där den ena innehöll kortens färger och den andra innehöll kortens
+            namn t.ex. ace, two, three, jack och king. Därefter loopade jag igenom arrayerna och satte ihop namnen med
+            färgerna så dem hette ace_of_spades. Med tanke på att det enbart var text så tyckte jag det såg alldeles för
+            tråkigt ut så jag letade upp en kortlek i bilder och sparade ner alla 52 kort + två jokrar och gjorde om så
+            att namnen blev "ace_of_spades.svg" så att jag enkelt kunde loopa ut alla bilder i twig filerna. Längre fram
+            när jag väl löst implementationen av uppgifterna fram till att jag skulle skapa API så insåg jag ett
+            problem. Problemet med min lösning var att i json objektet så var det enbart 52 rader med strängar och var
+            mer eller mindre en lista med namnen på korten och när jag funderade på hur jag skulle använda det i spel
+            logiken i kmom03 så stötte jag på ett till problem. Problemet här är att jag inte hade kunnat räkna ihop
+            kortens värde då dem enbart var strängar som låg i en array. Lösningen på detta var att skapa en konstruktor
+            i card klassen där jag definerar variablarna, "suits", "value", "title" och "imgPath". Så när jag loopade
+            igenom alla korten i den uppdaterade metoden så har alla kort sitt namn "ace, jack osv", value "värdet av
+            kortet", sin färg samt imgPath där jag bygger ihop strängarna likadant som tidigare så att jag kan loopa ut
+            bilderna i twig. Med denna lösningen så kommer implementationer som t.ex. spelet i kmom03 att bli mycket
+            smidigare då jag har alla grund properties som behövs för korten. Överlag så är jag nöjd med min struktur
+            och implementation.
+        </p>
+        <p>
+            Min TIL för detta kursmoment är hur jag kunde använda mig av session för att lösa vissa saker. Exempelvis
+            när jag gjorde /deal/:players/:cards så "drog" alla players kort ur varsin identisk kortlek istället för ur
+            samma. Detta skapade självklart problemet att det fanns flera av samma kort på "spelplanen". Alla players
+            hade varsin spader knäckt vilket inte ska vara möjligt så det jag gjorde var att när jag skriver
+            /deal/:players/:cards så skapar jag en ny blandad deck och lägger till den i en session('dealDeck'). Sedan
+            kör jag en for loop på antal players och anropar funktionen cardsToPlayer som hämtar kortleken från
+            sessionen poppar ut antal kort från kortleken och lägger till en ny array som är "playerhand" och när första
+            playern har fått sina kort så sätter jag resten av kortleken till session('dealDeck') så att när det delas
+            ut kort till nästa player så hämtar den från samma kortlek istället för en ny.
+        </p>
+
+        <!-- Redovisningstext för kmom -->
         <h2>Kmom03</h2>
         <p>
             Redovisningstext för kmom
         </p>
 
-    <!-- Redovisningstext för kmom -->
+        <!-- Redovisningstext för kmom -->
         <h2>Kmom04</h2>
         <p>
             Redovisningstext för kmom
         </p>
 
-    <!-- Redovisningstext för kmom -->
+        <!-- Redovisningstext för kmom -->
         <h2>Kmom05</h2>
         <p>
             Redovisningstext för kmom
         </p>
 
-    <!-- Redovisningstext för kmom -->
+        <!-- Redovisningstext för kmom -->
         <h2>Kmom06</h2>
         <p>
             Redovisningstext för kmom
         </p>
 
-    <!-- Redovisningstext för kmom -->
+        <!-- Redovisningstext för kmom -->
         <h2>Kmom07 - Kmom10</h2>
         <p>
             Redovisningstext för kmom
         </p>
-</div>
+    </div>
 
 {% endblock %}
