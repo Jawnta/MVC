@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class Deck
 {
+    
     public function newDeck(): array
     {
         $title = [
@@ -23,7 +24,7 @@ class Deck
             'queen',
             'king'
         ];
-        $values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+        $values = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
         $suits  = ['spades', 'hearts', 'diamonds', 'clubs'];
         $cards = [];
         for ($i = 0; $i < sizeof($suits); $i++) {
@@ -85,11 +86,9 @@ class Deck
 
     public function drawCard(SessionInterface $session, $number, $amountOfDrawnCards): array
     {
-
         $shuffledDeck = $this->getCurrentDeck($session);
         $drawnCards = $session->get('drawnCards');
-        if ($number + $amountOfDrawnCards > 52)
-        {
+        if (($number + $amountOfDrawnCards) > 52) {
             return $drawnCards;
         }
         for ($i = 0; $i < $number; $i++) {
@@ -103,5 +102,18 @@ class Deck
         $shuffledDeck = $session->get('deck');
 
         return [$drawnCards, $shuffledDeck];
+    }
+
+    public function blackJackDeck(SessionInterface $session)
+    {
+        $amount = 5;
+        $deck = [];
+        $newDeck = $this->shuffleDeck();
+        for ($i = 0; $i < $amount; $i++) {
+            foreach ($newDeck as $card) {
+                array_push($deck, $card);
+            }
+        }
+        return $session->set('bjDeck', $deck);
     }
 }

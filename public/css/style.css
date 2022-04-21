@@ -174,3 +174,45 @@ body {
     width: auto;
     margin-bottom: 20px;
 }
+
+.buttons {
+    display: flex;
+}
+
+.text-box {
+    display: flex;
+    flex-flow: row wrap;
+    width: 60%;
+    justify-content: center
+}
+
+.img-box {
+    display: flex;
+    width: 200px;
+    height: auto;
+    align-self: flex-start;
+    flex-flow: column;
+    margin: 0 0 0 15px;
+}
+
+.img-box img{
+    width: 100px;
+    height: auto;
+}
+
+.img-box h3 {
+    margin: 0px;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+code {
+    background-color: #eee;
+    border: 1px solid #999;
+    display: block;
+    padding: 20px;
+
+}

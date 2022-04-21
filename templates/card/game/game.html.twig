@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Game{% endblock %}
+
+{% block content %}
+
+
+    <div class="content">
+        <h1>Game</h1>
+        <div class="text-box">
+        <p>Blackjack är det största och vanligaste kortspelet i casinovärlden. Du spelar mot en croupier (banken) och
+            det gäller att få en hand som slår bankens hand. Om din poäng är högre än bankens så vinner du dubbla
+            insatsen. Om du får exakt 21 på dina första två kort så får du Blackjack vilket ger 2.5 gånger pengarna
+            tillbaka. Om du däremot tar fler kort och kommer över 21 så har du förlorat.</p>
+        </div>
+
+        <div class="card-nav">
+            <ul>
+                <li>
+                    <a href="{{ url("blackJack") }}">BlackJack</a>
+                </li>
+                <li>
+                    <a href="{{ url("doc") }}">Documentation</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

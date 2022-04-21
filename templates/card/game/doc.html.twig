@@ -1,0 +1,59 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Documentation{% endblock %}
+
+{% block content %}
+
+
+    <div class="content">
+        <h1>Documentation</h1>
+        <div class="wrapper">
+            <div class="img-box">
+                <a href="{{ asset("img/flowchart_blackjack.png") }}"><img
+                            src="{{ asset("img/flowchart_blackjack.png") }}" alt="flowchart"></a>
+                <h3>Flowchart</h3>
+            </div>
+
+            <div class="text-box">
+                <p>Då blackjack använder sig av fler än en kortlek så var det första jag tänkte på att jag måste kunna
+                    ha flera kortlekar samtidigt i en och samma kortlek.</p>
+                <pre>
+                <code>public function blackJackDeck() {
+
+        $antalKortlekar = x;
+        $array = [];
+        $blandadLek = blandadLek();
+        for (antalKortlekar) {
+            array_push(array, antalKortlekar);
+
+        }
+        $session set array as blackjackdeck;
+
+    }</code></pre>
+                <p>Sedan försökte jag tänka ut hur jag skulle kunna dra flera kort som spelare och tänkte att jag kunde
+                    använde mig av tekniken som jag använde på /draw sidan.</p>
+                <pre>
+                <code>public function drawCard(session, spelare) {
+
+        $kortlek = session get blackjackdeck;
+        $hand = spelare.hand;
+        $hand[] = array_pop(kortlek);
+
+        $session set kortlek as blackjackdeck;
+        return spelare;
+
+
+    }</code></pre>
+                <p>De klasser jag behöver förutom min tidigare deck klass är en klass för spelare, dealer och en för
+                    själva spelet blackjack. Jag tänker att alla funktioner / metoder som berör spelet ska finnas i
+                    blackjack klassen som exempelvis när man ska betta, stanna, splitta, dra kort, starta ny runda eller
+                    liknanden. I klassen spelare behöver jag ha properties för spelarens hand, värdet av handen och hur
+                    mycket pengar spelaren har. Går vi vidare till dealern så behöver vi ha en hand property och
+                    score.</p>
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Card{% endblock %}
+
+{% block content %}
+
+    <h1>BlackJack</h1>
+
+    {% if game.started == false %}
+    <div class="options">
+        <form action="{{ path('start') }}" method="POST">
+            <input type="submit" value="Start game!" name="start">
+        </form>
+    </div>
+    {% else %}
+
+    <h1>Dealer</h1>
+    <div class="card-content">
+        {% for card in deck[0].hand %}
+            {% if card.back == true %}
+            <img src="{{ asset('img/cards/' ~ card.backImgPath ) }}" alt="{{ card.imgPath }}">
+            {% else %}
+            <img src="{{ asset('img/cards/' ~ card.imgPath ) }}" alt="{{ card.imgPath }}">
+            {% endif %}
+        {% endfor %}
+
+    </div>
+    {% if deck[0].hand[0].back == false %}
+        <h1>Score: {{ deck[0].score }}</h1>
+    {% endif %}
+    <h1>Player</h1>
+    <div class="card-content">
+        {% for card in deck[1].hand %}
+            {% if card.back == true %}
+                <img src="{{ asset('img/cards/' ~ card.backImgPath ) }}" alt="{{ card.imgPath }}">
+            {% else %}
+                <img src="{{ asset('img/cards/' ~ card.imgPath ) }}" alt="{{ card.imgPath }}">
+            {% endif %}
+        {% endfor %}
+    </div>
+        {% if game.endOfRound == false %}
+    <div class="options">
+        <div class="buttons">
+        <form action="{{ path('hit') }}" method="POST">
+            <input type="submit" value="Hit" name="hitMe" {% if player.bet == 0 %} disabled {% endif %}>
+        </form>
+        <form action="{{ path('stay') }}" method="POST" >
+            <input type="submit" value="Stay" name="stayMe" {% if player.bet == 0 %} disabled {% endif %}>
+        </form>
+        </div>
+        <form action="{{ path('bet') }}" method="POST">
+            <label>
+                <input type="number" name="theBet" min="1" max="{{ player.balance }}" {% if player.bet != 0 %} disabled {% endif %}>
+            </label>
+            <input type="submit" value="Bet" name="betMe" {% if player.bet != 0 %} disabled {% endif %}>
+        </form>
+
+
+        <h1>Money: {{ deck[1].balance }} Score: {% if deck[1].hand[0].back == true %} 0 {% else %}  {{ deck[1].score }} {% endif %} Bet: {{ deck[1].bet }}</h1>
+    </div>
+        {% else %}
+            <div class="options">
+                <form action="{{ path('newRound') }}" method="POST">
+                    <input type="submit" value="New Round" name="newRound">
+                </form>
+                <h1>Money: {{ deck[1].balance }} Score: {{ deck[1].score }} Bet: {{ deck[1].bet }}</h1>
+            </div>
+        {% endif %}
+    <h1>Rest of deck</h1>
+    <div class="card-content">
+        {% for card in deck[2]|reverse %}
+            <img src="{{ asset('img/cards/' ~ card.imgPath ) }}" alt="{{ card.imgPath }}">
+        {% endfor %}
+    </div>
+    {% endif %}
+
+{% endblock %}

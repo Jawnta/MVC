@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DeckApiController extends AbstractController
 {
     /**
-     * @Route("card/api/", name="api", methods={"GET", "HEAD"}))
+     * @Route("card/api/", name="api", methods={"GET"}))
      */
     public function deck(): Response
     {

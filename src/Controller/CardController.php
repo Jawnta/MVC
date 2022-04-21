@@ -47,7 +47,6 @@ class CardController extends AbstractController
      */
     public function draw(SessionInterface $session, $number = 1): Response
     {
-
         if (empty($session->get('drawnCards'))) {
             $session->set('drawnCards', []);
         }
@@ -68,8 +67,12 @@ class CardController extends AbstractController
      */
     public function reset(SessionInterface $session): Response
     {
-        $session->set('deck', []);
-        $session->set('drawnCards', []);
+//        $session->set('deck', []);
+//        $session->set('drawnCards', []);
+//        $session->set('bjDeck', []);
+//        $session->set('player', []);
+//        $session->set('dealer', []);
+        $session->clear();
 
 
         return $this->render('card/card.html.twig');
