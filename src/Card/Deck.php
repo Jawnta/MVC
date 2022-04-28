@@ -6,7 +6,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class Deck
 {
-    
     public function newDeck(): array
     {
         $title = [

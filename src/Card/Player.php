@@ -32,7 +32,7 @@ class Player
 
     public function updateBalance(SessionInterface $session, $result): string
     {
-        if ($result == "blackjack") {
+        if ($result == "blackJack") {
             $this->balance += $this->bet * 2.5;
             $this->bet = 0;
             $session->set('player', $this);

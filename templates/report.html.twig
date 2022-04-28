@@ -142,8 +142,32 @@
 
         <!-- Redovisningstext för kmom -->
         <h2>Kmom04</h2>
+        
         <p>
-            Redovisningstext för kmom
+            Med tanke på att vi skrev ganska många enhetstester för konstruktionerna i oopython så kom jag in väldigt
+            fort i PHPUnit. Utöver det så har jag inga svårigheter att skriva tester däremot är jag inte säker på om det
+            är bra tester. Jag fick fram hur man mockade session men kunde inte riktigt hitta / förstå hur jag
+            skulle mocka request vilket resulterade i att jag inte kunde skriva ett test för "playerBet()" i Player
+            klassen. Resultatet av kodtäckningen blev 66.67% på player klassen på grund av detta. Kodtäckningen gällande
+            blackjack klassen är däremot 99.03%.
+        </p>
+        <p>
+            Jag kunde testa det mesta i min kod dock som jag nämnde ovan så är jag inte helt säker på att testerna är
+            tillräckligt bra. Det största problemet jag hade var att testa metoden med request och eftersom jag inte
+            lyckades lista ut hur jag skulle göra det så skippade jag den för tillfället. Jag uppdaterade lite i
+            källkoden när jag skulle testa de olika resultaten när man trycker stay. Vid varje resultat så returnerar
+            jag en textsträng som jag sedan jämför med i testerna. Anledningen till att jag kunde ändra detta var på
+            grund av att jag inte hade någon return vid dessa olika checkarna så det var väldigt enkelt att fixa till.
+        </p>
+        <p>
+            Jag skulle inte säga att testbar kod indentifierar "snygg och ren kod" rakt av. Däremot så kan det vara
+            lättare att indentifiera om koden är testbar om det är snygg och ren kod då det blir lättare att läsa koden
+            och då kan man lättare se om det går att testa den skulle jag säga.
+        </p>
+        <p>
+            Min TIL för detta kursmomentet är hur man mockar session vid enhetstestning. Det tog ett tag innan jag löste
+            hur jag skulle testa när jag använda mig av session. Jag gjorde lite research och kom fram till att man
+            kunde mocka session genom att köra "$session = new Session(new MockArraySessionStorage());".
         </p>
 
         <!-- Redovisningstext för kmom -->

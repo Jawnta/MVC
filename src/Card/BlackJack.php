@@ -125,15 +125,19 @@ class BlackJack
             if ($dealerScore > $playerScore and $dealerScore <= 21) {
                 $x = 2;
                 $this->roundEndScreen($session, "dealer");
+                return "dealer";
             } elseif ($dealerScore == $playerScore) {
                 $x = 2;
                 $this->roundEndScreen($session, "draw");
+                return "draw";
             } elseif ($playerScore > 21) {
                 $x = 2;
                 $this->roundEndScreen($session, "bust");
+                return "bust";
             } elseif ($dealerScore > 21) {
                 $x = 2;
                 $this->roundEndScreen($session, "win");
+                return "win";
             } elseif ($dealerScore < $playerScore) {
                 $this->dealerDraw($session, $dealer);
                 $this->score($dealer);
@@ -146,7 +150,8 @@ class BlackJack
         $bj = $session->get('blackJackGame');
         $bj->endOfRound = true;
         $player = $session->get('player');
-        return $player->updateBalance($session, $result);
+        $player->updateBalance($session, $result);
+        return $result;
     }
 
     public function roundEnd(SessionInterface $session, $player, $dealer)
@@ -164,11 +169,13 @@ class BlackJack
         $this->newRound($session, $player, $dealer);
     }
 
-    public function checkBlackJack(SessionInterface $session, $player, $result)
+    public function checkBlackJack(SessionInterface $session, $player, $result): bool
     {
         $dealer = $session->get('dealer');
         if ($result == "blackJack") {
             $this->roundEnd($session, $player, $dealer);
+            return true;
         }
+        return false;
     }
 }
