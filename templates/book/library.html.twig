@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Library{% endblock %}
+
+{% block content %}
+
+
+    <div class="content">
+        <h1>Library</h1>
+        <div class="card-nav">
+            <ul>
+                <li>
+                    <a href="{{ url("add_book") }}">Add a book</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="book-wrapper">
+        {% for book in books %}
+        <div class="book-box">
+            <div class="book-img">
+                {% if book.image == "" %}
+                <img src="{{ asset('img/books/no-img.png') }}" alt="No image">
+                {% else %}
+            <img src="{{ asset('img/books/' ~ book.image ) }}" alt="{{ book.image }}">
+                    {% endif %}
+            </div>
+            <div class="book-text">
+            <p>Title: {{ book.title }}</p>
+            <p>ISBN: {{ book.isbn }}</p>
+            <p>Author: {{ book.author }}</p>
+            <a href="{{ url('show_book', { 'id': book.id }) }}">Details</a>
+            <a href="{{ url('pre_update', { 'id': book.id }) }}">Update book</a>
+            <a href="{{ url('delete_book', { 'id': book.id }) }}">Delete book</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -142,7 +142,7 @@
 
         <!-- Redovisningstext för kmom -->
         <h2>Kmom04</h2>
-        
+
         <p>
             Med tanke på att vi skrev ganska många enhetstester för konstruktionerna i oopython så kom jag in väldigt
             fort i PHPUnit. Utöver det så har jag inga svårigheter att skriva tester däremot är jag inte säker på om det
@@ -172,8 +172,50 @@
 
         <!-- Redovisningstext för kmom -->
         <h2>Kmom05</h2>
+
+
+        Gick det bra att jobba igenom övningen med Symfony och Doctrine. Något särskilt du tänkte/reagerade på under
+        övningen?
+
+        Berätta om din applikation och hur du tänkte när du byggde upp den. Tänkte du något speciellt på
+        användargränssnittet? Gick det bra att jobba med ORM i CRUD eller vad anser du om det?
+
+        Berätta om du gjorde (delar av) extrauppgiften med användare och login.
+
+        Vad är din uppfattning om ORM så här långt och relatera gärna till andra sätt att jobba med applikationskod mot
+        databaser?
+
+        Vilken är din TIL för detta kmom?
+
         <p>
-            Redovisningstext för kmom
+            Jag tycker det gick alldeles utmärkt att jobba igenom Symfony med Doctrine. Jag började med att läsa igenom
+            övningen och sedan gjorde jag de första stegen så att allt var på plats. När jag förstod hur det fungerade
+            så gjorde jag direkt en ny databas med relevanta kolumner för "biblioteket". Det var inget speciellt som jag
+            reagerade på under själva övningen utan jag tyckte den var enkel att förstå och jobba igenom.
+        </p>
+        <p>
+            När det gäller mitt användargränssnitt så tog jag inspiration från det jag gjorde i databas kursen. Jag
+            skapade först en landningssida och länken till den finns i den vanliga menyn med namn "library". Väl inne i
+            library så finns det en knapp som heter "Add a book" och under knappen visar jag upp alla böcker som är
+            inlagda i databasen och där finns även länkar för att se detaljer, uppdatera och ta bort boken. Jag tycker
+            det gick smidigt att jobba med ORM i crud. Erfarenheten från databaskursen hjälpte mig att få de olika CRUD
+            delarna på plats enkelt, snabbt och smidigt. Överlag så tycker jag att det var smidigare att skriva i ORM
+            istället för att använda ren SQL kod.
+        </p>
+
+        <p>
+            Jag har inte riktigt greppat ORM konceptet i helhet och dess användningsområden. Däremot om jag har förstått
+            det rätt så blir det lite smidgare med ORM då det blir enklare att skriva DRY kod samt att man behöver inte
+            blanda sina språk. T.ex. om jag skriver PHP så kan jag fortsätta göra min databas i PHP istället för SQL kod
+            vilket i sin tur kan underlätta för andra personer. Exempelvis om man har flera personer på samma projekt
+            och säg att de flesta personerna i projektet inte är speciellt insatta i SQL, då är det smidigt att kunna
+            skriva i det språket som projektet använder sig av.
+        </p>
+        <p>
+            Min TIL för detta kursmoment är en del om hur man sätter upp ORM och får det att fungera. Det 'största'
+            problemet jag hade var hur jag skulle få in "book.id" i min url till update och delete i twig. Jag letade
+            runt efter information och hittade att man kunde skicka in ett objekt och så satte jag " { 'id': book.id }"
+            i twigs url funktion vilket löste att jag fick med id't.
         </p>
 
         <!-- Redovisningstext för kmom -->

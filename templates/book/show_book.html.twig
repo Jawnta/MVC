@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Details{% endblock %}
+
+{% block content %}
+
+
+    <div class="content">
+
+    <div class="single-book-wrapper">
+        <div class="single-book-box">
+        <h1>{{ book.title }}</h1>
+        {% if book.image == "" %}
+            <img src="{{ asset('img/books/no-img.png') }}" alt="No image">
+        {% else %}
+            <img src="{{ asset('img/books/' ~ book.image ) }}" alt="{{ book.image }}">
+        {% endif %}
+        </div>
+        <div class="description">
+            <h1>Description</h1>
+            <p>{{ book.description }}</p>
+            <p>ISBN: {{ book.isbn }}</p>
+            <p>Author: {{ book.author }}</p>
+        </div>
+
+    </div>
+
+    </div>
+
+{% endblock %}

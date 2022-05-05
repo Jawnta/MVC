@@ -507,9 +507,6 @@
     "symfony/string": {
         "version": "v6.0.3"
     },
-    "symfony/test-pack": {
-        "version": "1.0.10"
-    },
     "symfony/translation": {
         "version": "6.0",
         "recipe": {
