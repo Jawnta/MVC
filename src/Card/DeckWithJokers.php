@@ -4,8 +4,14 @@ namespace App\Card;
 
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+/**
+ * Class for a deck + two jokers
+ */
 class DeckWithJokers extends Deck
 {
+    /**
+     * Creates a new deck + two jokers
+     */
     public function newDeckWithJokers(): array
     {
         $newDeck = $this->newDeck();

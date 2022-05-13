@@ -4,8 +4,14 @@ namespace App\Card;
 
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+/**
+ * Deck class which holds all cards in a deck.
+ */
 class Deck
 {
+    /**
+     * newDeck creates a deck with 52 cards and 4 suits.
+     */
     public function newDeck(): array
     {
         $title = [
@@ -26,8 +32,10 @@ class Deck
         $values = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
         $suits  = ['spades', 'hearts', 'diamonds', 'clubs'];
         $cards = [];
-        for ($i = 0; $i < sizeof($suits); $i++) {
-            for ($x = 0; $x < sizeof($values); $x++) {
+        $sizeOfSuits = sizeof($suits);
+        $sizeOfValues = sizeof($values);
+        for ($i = 0; $i < $sizeOfSuits; $i++) {
+            for ($x = 0; $x < $sizeOfValues; $x++) {
                 array_push($cards, new Card($suits[$i], $values[$x], $title[$x]));
             }
         }
@@ -35,6 +43,9 @@ class Deck
         return $cards;
     }
 
+    /**
+     * shuffleDeck creates a new deck then shuffles it.
+     */
     public function shuffleDeck(): array
     {
         $cardDeck = new Deck();
@@ -42,7 +53,9 @@ class Deck
         shuffle($cards);
         return $cards;
     }
-
+    /**
+     * getCurrentDeck is a getter for the currentDeck
+     */
     public function getCurrentDeck(SessionInterface $session): array
     {
         if (empty($session->get('deck'))) {
@@ -52,6 +65,9 @@ class Deck
         }
     }
 
+    /**
+     * method to deal x amount of cards to x amount of players
+     */
     public function dealCards(SessionInterface $session, $numOfCards, $players): array
     {
         $shuffledDeck = $this->shuffleDeck();
@@ -70,7 +86,9 @@ class Deck
 
         return [$playersWithCards, $shuffledDeck];
     }
-
+    /**
+     * method for dealing cards to player. Used in dealCards method
+     */
     public function cardsToPlayer(SessionInterface $session, $numberOfCards): array
     {
         $deck = $session->get('dealDeck');
@@ -83,6 +101,9 @@ class Deck
         return $playerHand;
     }
 
+    /**
+     * method for drawing a card
+     */
     public function drawCard(SessionInterface $session, $number, $amountOfDrawnCards): array
     {
         $shuffledDeck = $this->getCurrentDeck($session);
@@ -103,6 +124,9 @@ class Deck
         return [$drawnCards, $shuffledDeck];
     }
 
+    /**
+     * method for creating a deck for blackjack which contains 5 * 52 card deck.
+     */
     public function blackJackDeck(SessionInterface $session)
     {
         $amount = 5;

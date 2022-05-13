@@ -320,3 +320,11 @@ code {
     width: 500px;
     margin-left: auto;
 }
+
+.content-metrics {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    padding-left: 20%;
+    padding-right: 20%;
+}

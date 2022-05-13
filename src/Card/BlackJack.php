@@ -5,6 +5,9 @@ namespace App\Card;
 use JetBrains\PhpStorm\Pure;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+/**
+ * BlackJack class holds all game logic
+ */
 class BlackJack
 {
     public bool $started;
@@ -16,6 +19,9 @@ class BlackJack
         $this->endOfRound = $endOfRound;
     }
 
+    /**
+     * setupGame sets up the dealer, deck and player for the game.
+     */
     public function setupGame(SessionInterface $session): array
     {
         $newDeck = new Deck();
@@ -30,6 +36,10 @@ class BlackJack
         return [$dealer, $player, $sessDeck];
     }
 
+    /**
+     * newRound draws inital cards for dealer and player. If player gets blackjack on drawn cards
+     * Then call method roundEndScreen, roundEnd and then starts a new round again.
+     */
     public function newRound(SessionInterface $session, $player, $dealer)
     {
         $this->playerDraw($session, $player);
@@ -45,6 +55,10 @@ class BlackJack
         }
     }
 
+    /**
+     * Dealer draws inital two cards and the cards are faced down
+     * if its not inital draw, dealer only draws one card at a time
+     */
     public function dealerDraw(SessionInterface $session, $dealer)
     {
         $deck = $session->get('bjDeck');
@@ -62,6 +76,10 @@ class BlackJack
         $session->set('dealer', $dealer);
     }
 
+    /**
+     * Player draws inital two cards and the cards are faced down
+     * if its not inital draw, Player only draws one card at a time
+     */
     public function playerDraw(SessionInterface $session, $player)
     {
         $deck = $session->get('bjDeck');
@@ -78,14 +96,17 @@ class BlackJack
         $session->set('player', $player);
     }
 
-
+    /**
+     * Calculates hand score for dealer or player.
+     */
     public function score($character)
     {
         $hand = $character->hand;
         $score  = 0;
         $aces = 0;
+        $size = sizeof($hand);
 
-        for ($i = 0; $i < sizeof($hand); $i++) {
+        for ($i = 0; $i < $size; $i++) {
             if ($hand[$i]->title != "ace") {
                 $score += $hand[$i]->value;
             } else {
@@ -101,7 +122,10 @@ class BlackJack
         }
         $character->score = $score;
     }
-
+    /**
+     * Method for when players wants to draw another card.
+     * If total hand score > 21 player busts and calls roundEndScreen.
+     */
     public function hit(SessionInterface $session)
     {
         $player = $session->get('player');
@@ -111,11 +135,13 @@ class BlackJack
         }
     }
 
-    public function stay(SessionInterface $session)
+    /**
+     * Stay makes the dealer draw cards until player or dealer loses or it becomes a draw.
+     */
+    public function stay(SessionInterface $session): string
     {
-        $x = 1;
 
-        while ($x == 1) {
+        while (true) {
             $dealer = $session->get('dealer');
             $player = $session->get('player');
             $dealer->hand[0]->back = false;
@@ -123,19 +149,15 @@ class BlackJack
             $playerScore = $player->score;
             $this->score($dealer);
             if ($dealerScore > $playerScore and $dealerScore <= 21) {
-                $x = 2;
                 $this->roundEndScreen($session, "dealer");
                 return "dealer";
             } elseif ($dealerScore == $playerScore) {
-                $x = 2;
                 $this->roundEndScreen($session, "draw");
                 return "draw";
             } elseif ($playerScore > 21) {
-                $x = 2;
                 $this->roundEndScreen($session, "bust");
                 return "bust";
             } elseif ($dealerScore > 21) {
-                $x = 2;
                 $this->roundEndScreen($session, "win");
                 return "win";
             } elseif ($dealerScore < $playerScore) {
@@ -145,6 +167,10 @@ class BlackJack
             }
         }
     }
+
+    /**
+     * Changes endOfRound to true and updates balance for player.
+     */
     public function roundEndScreen(SessionInterface $session, $result)
     {
         $bj = $session->get('blackJackGame');
@@ -154,11 +180,15 @@ class BlackJack
         return $result;
     }
 
+    /**
+     * roundEnd resets player and dealer hand and if deck size is < 52 cards, create new deck.
+     */
     public function roundEnd(SessionInterface $session, $player, $dealer)
     {
         $deck = $session->get('bjDeck');
+        $size = sizeof($deck);
 
-        if (sizeof($deck) < 52) {
+        if ($size < 52) {
             $newDeck = new Deck();
             $newDeck->blackJackDeck($session);
         }
@@ -168,7 +198,9 @@ class BlackJack
         $session->set('dealer', $dealer);
         $this->newRound($session, $player, $dealer);
     }
-
+    /**
+     * checkBlackJack checks if player gets blackjack at inital draw.
+     */
     public function checkBlackJack(SessionInterface $session, $player, $result): bool
     {
         $dealer = $session->get('dealer');

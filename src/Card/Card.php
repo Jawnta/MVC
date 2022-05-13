@@ -4,6 +4,9 @@ namespace App\Card;
 
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+/**
+ * Card class
+ */
 class Card
 {
     public int $value;
@@ -13,6 +16,9 @@ class Card
     public bool $back;
     public string $backImgPath;
 
+    /**
+     * constructor for class Card, holds properties for the card.
+     */
     public function __construct($suit, $value, $title, $back = false)
     {
         $this->suit = $suit;

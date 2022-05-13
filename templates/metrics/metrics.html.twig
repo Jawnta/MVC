@@ -1,0 +1,116 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Metrics{% endblock %}
+
+{% block content %}
+
+
+    <div class="content">
+        <div class="content-metrics">
+            <h2>Introduktion</h2>
+            <h3>Coverage</h3>
+            <p>
+                Destå högre kodtäckning man har destå större chans att koden är väl testad vilket kan antyda på en bra
+                kod
+                kvalité. Skulle man dock ha en väldigt låg kodtäckning så kan det istället antyda att kodkvaltién har
+                fått
+                lida.
+            </p>
+            <p>
+                Exempel, Om vi kikar på scrutinizer kan man se att jag har en kodtäckning på 37.1%. I första ögonblicket
+                hade man kunnat antyda att koden inte är speciellt testad. Men kikar man inte på kodtäckningen kan man
+                se
+                att "src" har en kodtäckning på 79.82% vilket är egentligen den enda katalogen som innehåller filer
+                testas.
+                Varav alla filer i "src" skrev jag inte tester till då dem inte var relevant till den kod och de filer
+                som
+                skulle testas vilket i sin tur leder till en mindre kodtäckning via scrutinizer.
+            </p>
+            <h3>Complexity</h3>
+            <p>
+                Cyklomatisk komplexitet är ett mätinstrument som används för att mäta komplexiteten i ett program. Det
+                är
+                ett mått på antalet linjärt oberoende vägar genom ett programs källkod. Kod som har en lägre komplexitet
+                blir lättare att förstå och underhålla.
+            </p>
+            <p>
+                BlackJack klassen har den högsta komplexiteten av alla mina filer. Detta hade kunnat medföra att det
+                blir svårt att underhålla och hålla koden uppdaterad.
+            </p>
+            <h3>Cohesion</h3>
+            <p>
+                Cohesion eller Lack of cohesion of methods (LCOM) visar hur sammanhängande metoder är med klassen dem
+                finns
+                i. Lägre värden indikerar klasser med hög sammanhållning där metoderna verkligen passar i den klassen
+                medans
+                högre värden indikerar en lägre sammanhållning vilket innebär att en klass har förmycket ansvar och
+                eventuellt borde delas upp i flera klasser.
+            </p>
+            <p>
+                Vissa av mina Controllers har lite höre LCOM vilket kan betyda att jag skulle behöva dela upp min
+                kod i flera klasser.
+            </p>
+            <h3>Coupling</h3>
+            <p>
+                Vi har två olika delar inom coupling vilket är Afferent coupling (AC) och Efferent coupling (EC).
+                Afferent coupling är antalet klasser som blir påverkade av en specifik klass (utgående anslutningar).
+                Efferent coupling är antalet klasser som används av den specifika klassen (ingående anslutningar).
+            </p>
+            <p>
+                Deck.php har 6 i AC. Om man kikar igenom koden så kan man se att Deck klassen används i
+                flertalet klasser och eftersom den används i bl.a. CardController, GameController och BlackJack klassen
+                så
+                påverkas dessa klasser om deck ändras(AC). De flesta controllers i mitt projekt har ganska hög EC då jag
+                använder många av klasserna i mina routes. Exempelvis så skapar jag ett nytt Deck, BlackJack, Player,
+                Dealer
+                objekt i BlackJack controllern vilket i sin tur leder till den specifika klassen "BlackJack" har hög EC.
+            </p>
+
+            <h3>Phpmetrics</h3>
+            <p>
+                Efter en analys med hjälp av Phpmetrics så kan jag konstatera att BookController har för hög LCOM
+                och för att få ett bättre mätresultat så hade det varit bättre att dela upp ansvaret i flera klasser. Om
+                vi kikar på cyklomatiska komplexiteten inne på Phpmetrics så är den högsta 18 vilket är i BlackJack
+                klassen. Jag skulle inte säga att det är något som behövs fixar då den redan är väldigt låg. Kikar vi på
+                coverage så har jag en kodtäckning på ca 80% om man kikar inne i src/card. Går vi vidare och kollar på
+                coupling delen av phpmetrics så kan vi se att 'Deck' har högst afferent coupling vilket är rimligt då
+                klassen används av flertalet andra klasser.
+            </p>
+
+            <h3>Scrutinizer</h3>
+            <p>
+                När vi använder oss av Scrutinizer så kan vi se att komplexiteten av metoden stay i klassen BlackJack är
+                inte helt optimal då den har många conditions. Jag är inte säker på hur jag ska kunna förbättra det då
+                jag inte riktigt kan bryta ut det på ett annat sätt som jag känner till. Om vi istället kikar på issues
+                i scrutinizer så ser man att det är två varningar på BlackJack klassen samt Card klassen. Tre av fyra
+                varningar indikerar att jag använder "sizeof()" i en for loop men borde istället räkna ut
+                storleken innan loopen och den sista varningen visade enbart att en variabel inte används och kan tas
+                bort. Utöver detta så får jag inga problem med komplexitet, cohesion eller coverage om jag uppfattat det
+                rätt.
+            </p>
+
+            <h3>Förbättringar</h3>
+            <p>
+                Första förbättringen jag vill göra är att se till att Scrutinizer går igenom utan några issues. Detta
+                innebär att jag behöver fixa till BlackJack klassen och Card klassen genom att se till att mina
+                uträkningar med sizeof sker innan mina loopar istället för i looparnas condition.
+            </p>
+            <p> <img src="https://scrutinizer-ci.com/g/Jawnta/MVC/badges/quality-score.png?b=main" alt="scruti"/></p>
+            <p>
+                Andra förbättringen är att få en högre maintainability på mina klasser. För att öka maintainability
+                score så kan jag lägga till kommentarer.
+            </p>
+            <img src="{{ asset("img/scrutinizer_main.png") }}" alt="scrutinizer" width="150px" height="auto">
+            <p>
+                Tredje förbättringen jag vill fixa är att få bort att "BookController" är ett blob / god object. Vilket
+                innebär att den har alldeles för hög LCOM. Jag får dela upp ansvaret i flera klasser för att få ner
+                LCOM.
+
+                LCOM: 3
+            </p>
+
+
+        </div>
+    </div>
+
+{% endblock %}

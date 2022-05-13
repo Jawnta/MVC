@@ -95,6 +95,7 @@
         "phpcpd": "tools/phpcpd/vendor/bin/phpcpd src || true",
         "phpdoc": "tools/phpdoc/phpdoc",
         "phpunit": "XDEBUG_MODE=coverage bin/phpunit",
+        "phpmetrics": "tools/phpmetrics/vendor/bin/phpmetrics --config=phpmetrics.json",
         "lint": [
             "@phpcpd",
             "@phpmd",

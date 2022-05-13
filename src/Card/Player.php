@@ -7,6 +7,9 @@ use JetBrains\PhpStorm\Pure;
 use mysql_xdevapi\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+/**
+ * Player class for blackjack game
+ */
 class Player
 {
     public array $hand;
@@ -14,6 +17,9 @@ class Player
     public int $balance;
     public int $bet;
 
+    /**
+     * Constructor which holds properties of hand, score, balance and bet.
+     */
     public function __construct($hand = [], $score = 0, $balance = 2000, $bet = 0)
     {
         $this->hand = $hand;
@@ -21,6 +27,7 @@ class Player
         $this->balance = $balance;
         $this->bet = $bet;
     }
+
 
     public function playerBet(SessionInterface $session, Request $request)
     {
@@ -30,6 +37,9 @@ class Player
         $player->balance -= $bet;
     }
 
+    /**
+     * updateBalance calculates new player balance after a round ends
+     */
     public function updateBalance(SessionInterface $session, $result): string
     {
         if ($result == "blackJack") {
