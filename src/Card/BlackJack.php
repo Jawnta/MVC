@@ -138,9 +138,8 @@ class BlackJack
     /**
      * Stay makes the dealer draw cards until player or dealer loses or it becomes a draw.
      */
-    public function stay(SessionInterface $session): string
+    public function stay(SessionInterface $session)
     {
-
         while (true) {
             $dealer = $session->get('dealer');
             $player = $session->get('player');
@@ -161,6 +160,7 @@ class BlackJack
                 $this->roundEndScreen($session, "win");
                 return "win";
             } elseif ($dealerScore < $playerScore) {
+
                 $this->dealerDraw($session, $dealer);
                 $this->score($dealer);
                 $session->set('dealer', $dealer);
