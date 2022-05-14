@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\library\Book;
 use App\Entity\Books;
-use App\Entity\Product;
 use App\Repository\BooksRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,6 +15,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BookController extends AbstractController
 {
+    private Book $book;
+
+    /**
+     * Constructor which holds properties of hand, score, balance and bet.
+     */
+    #[Pure] public function __construct($hand = [], $score = 0, $balance = 2000, $bet = 0)
+    {
+        $this->book = new Book();
+
+    }
+
     #[Route('/book', name: 'app_book')]
     public function index(): Response
     {
@@ -27,8 +38,7 @@ class BookController extends AbstractController
      */
     public function library(BooksRepository $bookRepository): Response
     {
-        $newBook = new Book();
-        $books = $newBook->getAllBooks($bookRepository);
+        $books = $this->book->getAllBooks($bookRepository);
 
         return $this->render('book/library.html.twig', ['books' => $books]);
     }
@@ -52,8 +62,8 @@ class BookController extends AbstractController
         $description = $request->get('b_description');
         $image = $request->get('b_image');
 
-        $newBook = new Book();
-        $newBook->newBook($doctrine, $name, $isbn, $author, $description, $image);
+
+        $this->book->newBook($doctrine, $name, $isbn, $author, $description, $image);
 
         return $this->redirect('library');
     }
@@ -63,8 +73,7 @@ class BookController extends AbstractController
      */
     public function showBook(ManagerRegistry $doctrine, int $id): Response
     {
-        $entityManager = $doctrine->getManager();
-        $book = $entityManager->getRepository(Books::class)->find($id);
+        $book = $this->book->getOneBook($doctrine, $id);
         return $this->render('book/show_book.html.twig', ['book' => $book]);
     }
 
@@ -73,8 +82,8 @@ class BookController extends AbstractController
      */
     public function preUpdate(ManagerRegistry $doctrine, int $id): Response
     {
-        $newBook = new Book();
-        $book = $newBook->getOneBook($doctrine, $id);
+
+        $book = $this->book->getOneBook($doctrine, $id);
 
         return $this->render('book/update_book.html.twig', ['book' => $book]);
     }
@@ -95,8 +104,7 @@ class BookController extends AbstractController
         $description = $request->get('b_description');
         $image = $request->get('b_image');
 
-        $newBook = new Book();
-        $newBook->updateBook($doctrine, $id, $name, $isbn, $author, $description, $image);
+        $this->book->updateBook($doctrine, $id, $name, $isbn, $author, $description, $image);
 
         return $this->redirectToRoute('library');
     }
@@ -108,8 +116,8 @@ class BookController extends AbstractController
         ManagerRegistry $doctrine,
         int $id
     ): Response {
-        $newBook = new Book();
-        $newBook->deleteBook($doctrine, $id);
+
+        $this->book->deleteBook($doctrine, $id);
 
 
         return $this->redirectToRoute('library');

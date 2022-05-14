@@ -3,22 +3,27 @@
 namespace App\library;
 
 use App\Entity\Books;
-use App\Entity\Product;
 use App\Repository\BooksRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
+
+/**
+ * Class for book
+ */
 class Book extends AbstractController
 {
+    /**
+     * Getter for * books
+     */
     public function getAllBooks(BooksRepository $bookRepository): array
     {
         return $bookRepository->findAll();
     }
 
+    /**
+     * method for adding a new book to database
+     */
     public function newBook(ManagerRegistry $doctrine, $name, $isbn, $author, $description, $image): Books
     {
         $entityManager = $doctrine->getManager();
@@ -39,11 +44,17 @@ class Book extends AbstractController
         return $book;
     }
 
+    /**
+     * finds and returns a book from $id
+     */
     public function getOneBook(ManagerRegistry $doctrine, $id) {
         $entityManager = $doctrine->getManager();
         return $entityManager->getRepository(Books::class)->find($id);
     }
 
+    /**
+     * method for updating properties of a book
+     */
     public function updateBook(ManagerRegistry $doctrine, $id, $name, $isbn, $author, $description, $image) {
         $entityManager = $doctrine->getManager();
         $book = $entityManager->getRepository(Books::class)->find($id);
@@ -62,6 +73,9 @@ class Book extends AbstractController
         $entityManager->flush();
     }
 
+    /**
+     * method for deleting a book from the database
+     */
     public function deleteBook(ManagerRegistry $doctrine, $id) {
         $entityManager = $doctrine->getManager();
         $product = $entityManager->getRepository(Books::class)->find($id);
