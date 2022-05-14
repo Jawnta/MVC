@@ -12,7 +12,7 @@
             <p>
                 Destå högre kodtäckning man har destå större chans att koden är väl testad vilket kan antyda på en bra
                 kod
-                kvalité. Skulle man dock ha en väldigt låg kodtäckning så kan det istället antyda att kodkvaltién har
+                kvalitet. Skulle man dock ha en väldigt låg kodtäckning så kan det istället antyda att kodkvaliteten har
                 fått
                 lida.
             </p>
@@ -95,18 +95,43 @@
                 innebär att jag behöver fixa till BlackJack klassen och Card klassen genom att se till att mina
                 uträkningar med sizeof sker innan mina loopar istället för i looparnas condition.
             </p>
-            <p> <img src="https://scrutinizer-ci.com/g/Jawnta/MVC/badges/quality-score.png?b=main" alt="scruti"/></p>
+            <p><img src="https://scrutinizer-ci.com/g/Jawnta/MVC/badges/quality-score.png?b=main" alt="scruti"/></p>
             <p>
                 Andra förbättringen är att få en högre maintainability på mina klasser. För att öka maintainability
                 score så kan jag lägga till kommentarer.
+                BlackJack Maintainability ~ 23-30
+                Deck Maintainability ~ 23-30
             </p>
-            <img src="{{ asset("img/scrutinizer_main.png") }}" alt="scrutinizer" width="150px" height="auto">
+            <img src="{{ asset("img/metrics_maintain_before.png") }}" alt="scrutinizer" width="150px" height="auto">
             <p>
                 Tredje förbättringen jag vill fixa är att få bort att "BookController" är ett blob / god object. Vilket
                 innebär att den har alldeles för hög LCOM. Jag får dela upp ansvaret i flera klasser för att få ner
                 LCOM.
 
                 LCOM: 3
+            </p>
+            <h3>Efter förbättringar</h3>
+            <p>
+                Efter jag räknade ut sizeof före loopen och tog bort oanvänd kod så har jag fått bort alla issues.
+                Scrutinizer är fortfarande på 9.94 då en metod har "B" rank.
+            </p>
+            <p>
+                Efter dockbloc kommentarer är tillagda så har maintainability score ökat markant.
+                BlackJack Maintainability, 58.34
+                Deck Maintainability, 67.55
+            </p>
+            <img src="{{ asset("img/metrics_maintain_after.png") }}" alt="scrutinizer" width="150px" height="auto">
+            <p>
+                Jag bröt ut kod från BookController och la det i en egen klass och sedan anropar jag metoderna från den
+                klassen i BookControllern vilket resulterade att jag fick ner LCOM från fyra till ett.
+                LCOM: 1
+            </p>
+            <h3>Diskussion</h3>
+            <p>
+                Jag skulle säga att det är bra verktyg man kan använda sig av för att få en överblick över sin
+                kodkvalitet och det kan ge en inblick på hur man ska skriva sin kod för att få en bättre kod kvalitet.
+                Destå mer man jobbar med verktygen destå mer erfarenhet får man inom dessa områden och kommer på
+                automatik skriva bättre kod i framtiden.
             </p>
 
 

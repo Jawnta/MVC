@@ -173,20 +173,6 @@
         <!-- Redovisningstext för kmom -->
         <h2>Kmom05</h2>
 
-
-        Gick det bra att jobba igenom övningen med Symfony och Doctrine. Något särskilt du tänkte/reagerade på under
-        övningen?
-
-        Berätta om din applikation och hur du tänkte när du byggde upp den. Tänkte du något speciellt på
-        användargränssnittet? Gick det bra att jobba med ORM i CRUD eller vad anser du om det?
-
-        Berätta om du gjorde (delar av) extrauppgiften med användare och login.
-
-        Vad är din uppfattning om ORM så här långt och relatera gärna till andra sätt att jobba med applikationskod mot
-        databaser?
-
-        Vilken är din TIL för detta kmom?
-
         <p>
             Jag tycker det gick alldeles utmärkt att jobba igenom Symfony med Doctrine. Jag började med att läsa igenom
             övningen och sedan gjorde jag de första stegen så att allt var på plats. När jag förstod hur det fungerade
@@ -218,10 +204,37 @@
             i twigs url funktion vilket löste att jag fick med id't.
         </p>
 
+
         <!-- Redovisningstext för kmom -->
         <h2>Kmom06</h2>
         <p>
-            Redovisningstext för kmom
+            Det var väldigt många olika mätvärden som jag inte hade en aning om vad dem betydde vilket gjorde att det
+            kändes lite mycket i början. Jag hittade dock en "legend" om vad alla förkortningar betydde vilket gav mig
+            en bra överblick om vad jag behövde ha koll på. Något jag gillade med phpmetrics var violation fliken, där
+            fick jag en violation om att min BookController var ett god object och inte följde de SRP vilket resulterade
+            i hög LCOM.
+        </p>
+        <p>
+            Gällande integrationen med scrutinizer så gick det väldigt smidigt. Jag följde guiden för att komma igång
+            med scrutinizer så det var inga konstigheter. Jag tyckte scrutinizer var lättare att läsa av värden m.m. än
+            phpmetrics. Jag gillade användargränssnittet mera på scrutinizer helt enkelt. Om vi ska kika på kodtäckning
+            och kodkvalitet efter det aboslut första bygget så var katastrofalt på grund av att scrutinizer tog med allt
+            som låg i min report folder. Efter jag la till lite filters så att jag enbart kollade igenom det jag har
+            kodat så gick jag från 410 issues till 5 och en score som var röd till 9.94. Coverage säger dock att jag har
+            ungefär 37% men detta på grund av att jag inte testar de gamla klasserna som vi ej skrev tester för. Kikar
+            man enbart på det som har testats så ligger coverage på 80-100%.
+        </p>
+        <p>
+            Jag skulle säga att är en kod lätt att läsa och den är väl testad så har man en rätt bra grund till bra
+            kodkvalitet. Självklart kan man påvisa att man har en viss standard genom badges och att koden har en bra
+            kvalitet. Däremot så betyder inte detta att det är bra kod.
+        </p>
+
+        <p>
+            Min TIL för detta kursmoment är hur man läser av värderna från scrutinizer, phpmetrics och sedan använder
+            värderna för att kunna förbättra sin kod. Exempelvis min BookController hade LCOM 4 och var klassat som ett
+            "god object". Efter jag hade läst på lite mer om vad det betydde så bröt jag ut kod till en ny klass och
+            fick ner LCOM till 1 och violation om att BookController var ett god object försvann.
         </p>
 
         <!-- Redovisningstext för kmom -->
