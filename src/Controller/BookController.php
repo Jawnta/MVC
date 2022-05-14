@@ -18,9 +18,9 @@ class BookController extends AbstractController
     private Book $book;
 
     /**
-     * Constructor which holds properties of hand, score, balance and bet.
+     * Constructor for BookController
      */
-    #[Pure] public function __construct($hand = [], $score = 0, $balance = 2000, $bet = 0)
+    #[Pure] public function __construct()
     {
         $this->book = new Book();
 
