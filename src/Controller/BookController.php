@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\library\Book;
 use App\Entity\Books;
 use App\Entity\Product;
 use App\Repository\BooksRepository;
@@ -26,7 +27,9 @@ class BookController extends AbstractController
      */
     public function library(BooksRepository $bookRepository): Response
     {
-        $books = $bookRepository->findAll();
+        $newBook = new Book();
+        $books = $newBook->getAllBooks($bookRepository);
+
         return $this->render('book/library.html.twig', ['books' => $books]);
     }
 
@@ -42,27 +45,15 @@ class BookController extends AbstractController
      * @Route("/book/create", name="create_book", methods={"POST"})
      */
     public function createBook(ManagerRegistry $doctrine, Request $request): RedirectResponse {
-        $entityManager = $doctrine->getManager();
+
         $name = $request->get('b_name');
         $isbn = $request->get('b_isbn');
         $author = $request->get('b_author');
         $description = $request->get('b_description');
         $image = $request->get('b_image');
 
-
-        $book = new Books();
-        $book->setTitle($name);
-        $book->setIsbn($isbn);
-        $book->setAuthor($author);
-        $book->setDescription($description);
-        $book->setImage($image);
-
-        // tell Doctrine you want to (eventually) save the Product
-        // (no queries yet)
-        $entityManager->persist($book);
-
-        // actually executes the queries (i.e. the INSERT query)
-        $entityManager->flush();
+        $newBook = new Book();
+        $newBook->newBook($doctrine, $name, $isbn, $author, $description, $image);
 
         return $this->redirect('library');
     }
@@ -82,8 +73,9 @@ class BookController extends AbstractController
      */
     public function preUpdate(ManagerRegistry $doctrine, int $id): Response
     {
-        $entityManager = $doctrine->getManager();
-        $book = $entityManager->getRepository(Books::class)->find($id);
+        $newBook = new Book();
+        $book = $newBook->getOneBook($doctrine, $id);
+
         return $this->render('book/update_book.html.twig', ['book' => $book]);
     }
 
@@ -95,27 +87,16 @@ class BookController extends AbstractController
         ManagerRegistry $doctrine,
         Request $request
     ): Response {
-        $entityManager = $doctrine->getManager();
+
         $id = $request->get('b_id');
-        $book = $entityManager->getRepository(Books::class)->find($id);
         $name = $request->get('b_name');
         $isbn = $request->get('b_isbn');
         $author = $request->get('b_author');
         $description = $request->get('b_description');
         $image = $request->get('b_image');
 
-        if (!$book) {
-            throw $this->createNotFoundException(
-                'No product found for id '.$id
-            );
-        }
-
-        $book->setTitle($name);
-        $book->setIsbn($isbn);
-        $book->setAuthor($author);
-        $book->setDescription($description);
-        $book->setImage($image);
-        $entityManager->flush();
+        $newBook = new Book();
+        $newBook->updateBook($doctrine, $id, $name, $isbn, $author, $description, $image);
 
         return $this->redirectToRoute('library');
     }
@@ -127,17 +108,9 @@ class BookController extends AbstractController
         ManagerRegistry $doctrine,
         int $id
     ): Response {
-        $entityManager = $doctrine->getManager();
-        $product = $entityManager->getRepository(Books::class)->find($id);
+        $newBook = new Book();
+        $newBook->deleteBook($doctrine, $id);
 
-        if (!$product) {
-            throw $this->createNotFoundException(
-                'No product found for id '.$id
-            );
-        }
-
-        $entityManager->remove($product);
-        $entityManager->flush();
 
         return $this->redirectToRoute('library');
     }
