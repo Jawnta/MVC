@@ -387,7 +387,7 @@ class CompareScoreTest extends TestCase
         $array = [
             new Card("hearts", 6, "six"),
             new Card("spades", 7, "seven"),
-            new Card("diamonds", 8, "eight"),
+            new Card("diamonds", 2, "two"),
             new Card("spades", 9, "nine"),
             new Card("hearts", 10, "ten")
         ];
@@ -418,7 +418,7 @@ class CompareScoreTest extends TestCase
         $array = [
             new Card("hearts", 6, "six"),
             new Card("spades", 7, "seven"),
-            new Card("diamonds", 8, "eight"),
+            new Card("diamonds", 5, "five"),
             new Card("spades", 9, "nine"),
             new Card("hearts", 10, "ten")
         ];
@@ -426,7 +426,7 @@ class CompareScoreTest extends TestCase
         $array2 = [
             new Card("hearts", 6, "six"),
             new Card("spades", 7, "seven"),
-            new Card("diamonds", 8, "eight"),
+            new Card("diamonds", 5, "five"),
             new Card("spades", 9, "nine"),
             new Card("hearts", 10, "ten")
         ];
@@ -457,7 +457,7 @@ class CompareScoreTest extends TestCase
         $array2 = [
             new Card("hearts", 6, "six"),
             new Card("spades", 7, "seven"),
-            new Card("diamonds", 8, "eight"),
+            new Card("diamonds", 5, "five"),
             new Card("spades", 9, "nine"),
             new Card("hearts", 10, "ten")
         ];
