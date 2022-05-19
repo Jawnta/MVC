@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Card\Card;
 use App\Proj\Game;
 use App\Proj\Npc;
 use App\Proj\Player;
@@ -78,7 +79,18 @@ class ProjController extends AbstractController
         $bet = $request->get('f_bet');
         $player = $session->get('pokerPlayer');
         $player->makeBet($session, $bet);
+        $npc = $session->get('pokerNpc');
+//        $deck = [
+//            new Card("hearts", 6, "six"),
+//            new Card("diamonds", 7, "seven"),
+//            new Card("clubs", 8, "eight"),
+//            new Card("hearts", 9, "nine"),
+//            new Card("hearts", 10, "ten")
+//        ];
+//        $npc->hand = $deck;
 
+        $npc->npcRePick($session);
+        $session->set('pokerNpc', $npc);
         $session->set('pokerPlayer', $player);
 
         return $this->redirectToRoute('projHome');
@@ -108,6 +120,10 @@ class ProjController extends AbstractController
         return $this->redirectToRoute('projHome');
     }
 
+    function write_to_console($data) {
 
-
+        $console = 'console.log(' . json_encode($data) . ');';
+        $console = sprintf('<script>%s</script>', $console);
+        echo $console;
+    }
 }

@@ -10,7 +10,9 @@
                 {% if player.replaced %}
                     <img src="{{ asset('img/cards/' ~ card.imgPath ) }}" alt="{{ card.imgPath }}">
                 {% else %}
-                    <img src="{{ asset('img/cards/' ~ card.backImgPath ) }}" alt="{{ card.backImgPath }}">
+
+                    <img src="{{ asset('img/cards/' ~ card.imgPath ) }}" alt="{{ card.imgPath }}">
+{#                    <img src="{{ asset('img/cards/' ~ card.backImgPath ) }}" alt="{{ card.backImgPath }}">#}
                 {% endif %}
             {% endfor %}
         </div>

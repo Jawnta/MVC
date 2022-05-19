@@ -240,7 +240,7 @@ class CompareScoreTest extends TestCase
         $array2 = [
             new Card("hearts", 4, "four"),
             new Card("spades", 4, "four"),
-            new Card("diamonds", 4, "four"),
+            new Card("diamonds", 3, "three"),
             new Card("spades", 8, "eight"),
             new Card("hearts", 8, "eight")
         ];

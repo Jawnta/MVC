@@ -20,7 +20,7 @@ function compare_objects($obj_a, $obj_b)
 class NpcTest extends TestCase
 {
 
-    public function testRulesGetHighCard(): void
+    public function testRulesNpcDraw(): void
     {
         $session = new Session(new MockArraySessionStorage());
         $npc = new Npc();
@@ -45,11 +45,11 @@ class NpcTest extends TestCase
         $session = new Session(new MockArraySessionStorage());
         $npc = new Npc();
         $array = [
-            new Card("hearts", 2, "two"),
-            new Card("diamonds", 2, "two"),
-            new Card("clubs", 3, "three"),
-            new Card("hearts", 4, "four"),
-            new Card("hearts", 5, "five")
+            new Card("hearts", 2, "435345"),
+            new Card("diamonds", 2, "asd"),
+            new Card("clubs", 3, "3453"),
+            new Card("hearts", 4, "fo345ur"),
+            new Card("hearts", 5, "f345345ive")
         ];
 
         $deck = [
@@ -67,7 +67,7 @@ class NpcTest extends TestCase
 
         $npc->npcRePick($session);
 
-        $diff = array_udiff($deck, $array, 'compare_objects');
+        $diff = array_udiff($npc->hand, $array, 'compare_objects');
 
         $this->assertEquals(5, sizeof($diff));
     }
