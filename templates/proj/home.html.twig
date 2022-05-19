@@ -1,0 +1,72 @@
+{% extends "projBase.html.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>Five card poker</h1>
+    <div class="poker-content" style="background-image: url({{ asset("img/proj/poker_bg.webp") }})">
+        <div class="npc-cards">
+            {% for card in npc.hand %}
+                {% if player.replaced %}
+                    <img src="{{ asset('img/cards/' ~ card.imgPath ) }}" alt="{{ card.imgPath }}">
+                {% else %}
+                    <img src="{{ asset('img/cards/' ~ card.backImgPath ) }}" alt="{{ card.backImgPath }}">
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="player-cards">
+            <form action="{{ path('pokerRepick') }}" method="POST">
+                <div class="player-card-wrapper">
+                    {% for card in player.hand %}
+                        <div class="player-card">
+
+                            <label for="{{ card.imgPath }}">
+                                <img src="{{ asset('img/cards/' ~ card.imgPath ) }}"
+                                     alt="{{ card.imgPath }} id="{{ card.imgPath }}
+                                ">
+                            </label>
+                            <input type="checkbox" id="{{ card.imgPath }}"
+                                   name="{{ card.imgPath }}" {% if player.replaced or player.bet == 0 %} style="display: none"{% endif %}>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="poker-submit">
+                    <input type="submit"
+                           value="Replace cards" {% if player.replaced or player.bet == 0 %} style="display: none" {% endif %} >
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+    <div class="player-properties" {% if not started %} style="display: none" {% endif %}>
+        <p>Balance: {{ player.getBalance() }}</p>
+        <p>Current bet: {{ player.bet }}</p>
+        <p>Current hand: {{ player.currentHand }}</p>
+    </div>
+
+    <div class="bet-box" style="{% if not started or player.bet != 0 %} display: none {% endif %}">
+        <form action="{{ path('makeBet') }}" method="POST">
+            <label for="f_bet">
+                <p>Enter a bet</p>
+            </label>
+            <input type="number" id="f_bet" name="f_bet" min="1" max="{{ player.getBalance() }}" required>
+            <input type="submit" id="f_submit" name="f_submit" value="Lock bet">
+        </form>
+    </div>
+
+    <div class="start-game-button" style="{% if started %} display: none {% endif %}">
+        <form action="{{ path('pokerStart') }}" method="POST">
+            <input type="submit" value="Start the game">
+        </form>
+    </div>
+
+    <div class="new-round-button" {% if not player.replaced %} style="display: none" {% endif %}>
+        <form action="{{ path('newRound') }}" method="POST">
+            <input type="submit" value="New Round">
+        </form>
+    </div>
+
+{% endblock %}

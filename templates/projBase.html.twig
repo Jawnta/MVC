@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" href="favicon.ico">
+    <link href="{{ asset('css/projStyle.css') }}" rel="stylesheet"/>
+</head>
+<body>
+<div class="poker-header"><img src="{{ asset("img/proj/poker_logo.png") }}" alt="header">
+<div class="poker-nav">
+    <ul>
+        <li>
+            <a href="{{ url("projHome") }}">Home</a>
+        </li>
+        <li>
+            <a href="{{ path("about") }}">About</a>
+        </li>
+        <li>
+            <a href="{{ path("pokerReset") }}">Reset game</a>
+        </li>
+    </ul>
+</div>
+</div>
+<div class="poker-main">
+    {% block content %}
+        Default content
+    {% endblock %}
+</div>
+{#<div class="footer">#}
+{#    Jonatan Robertsson, jorp21@student.bth.se#}
+{#    <div class="logos">#}
+{#        <a href="https://github.com/Jawnta/MVC"><img src="{{ asset("img/github_small.png") }}" alt="gh"></a>#}
+{#    </div>#}
+{#</div>#}
+</body>
+</html>

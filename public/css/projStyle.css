@@ -1,0 +1,217 @@
+body {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    min-height: 100vh;
+    width: 1280px;
+    margin: auto;
+    background-color: #1e2126;
+    color: white;
+}
+.poker-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #1e2126;
+    margin-top: -4px;
+    border: 5px solid #292e34;;
+}
+.poker-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #1e2126;
+}
+
+.poker-nav li {
+    float: left;
+}
+
+.poker-nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.poker-nav li a:hover {
+    background-color: #292e34;
+}
+
+.poker-main {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    width: 1190px;
+    margin: 0;
+    background-color: #1e2126;
+    border: 5px solid #292e34;;
+}
+
+.poker-content {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 632px;
+    height: 476px;
+}
+
+.poker-content img {
+    position: relative;
+    object-fit: cover;
+    overflow: hidden;
+    border: 3px solid #01351f;
+}
+
+.cards-wrapper {
+    display: flex;
+    z-index: 10;
+    flex-flow: column wrap;
+
+}
+
+.cards-wrapper img {
+    margin: 10px;
+}
+
+.player-cards {
+    display: flex;
+    position: absolute;
+    bottom: 20px;
+}
+.player-cards img {
+    width: 70px;
+    height: 100px;
+
+}
+
+.player-cards label {
+    display: block;
+}
+
+.player-cards form {
+    display: block;
+
+}
+.player-cards input[type=checkbox] {
+    display: block;
+    cursor: pointer;
+    height: 20px;
+    margin: auto;
+}
+
+.player-cards input[type=submit] {
+    display: flex;
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 30px;
+}
+
+.npc-cards {
+    display: flex;
+    position: absolute;
+    top: 20px;
+}
+
+.npc-cards img {
+    width: 70px;
+    height: 100px;
+    margin-right: 10px;
+}
+
+.npc-cards img:last-child {
+    margin-right: 0;
+}
+
+.player-properties {
+    display: flex;
+    flex-flow: row;
+}
+
+.player-properties p {
+    margin-left: 10px;
+    margin-top: 0;
+}
+
+.start-game-button input[type=submit] {
+    display: flex;
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 30px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.player-card {
+    margin-right: 10px;
+}
+
+.player-card:last-child {
+    margin-right: 0;
+}
+
+.bet-box {
+    display: flex;
+    flex-flow: column;
+}
+
+.bet-box form {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.bet-box input[type=submit] {
+    display: flex;
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.poker-submit input[type=submit] {
+    display: flex;
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 30px;
+    margin-top: 10px;
+}
+
+.player-card-wrapper {
+    display: flex;
+}
+
+.new-round-button {
+    margin-bottom: 10px;
+}
+
+.new-round-button input[type=submit] {
+    display: flex;
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 30px;
+    margin-top: 10px;
+}

@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>About</h1>
+
+    <div class="content">
+        <p>
+            MVC fokuserar på objektorienterad programmering inom PHP. Fokus på klassiska objektorienterade
+            konstruktioner, objektorienterad programmering i webbaserat ramverk, databaser och enhetstestning som
+            hanteras tillsammans.
+        </p>
+
+        <p>
+            Målet med kursen är att man jag ska bl.a. kunna tillämpa de objektorienterade programmeringsparadigmen genom
+            praktiska övningar och projekt och kunna hantera de verktyg och miljöer som används vid utveckling av
+            databasdrivna webbapplikationer i ett ramverk för webbutveckling.
+        </p>
+        <div class="github">
+            <a href="https://github.com/dbwebb-se/mvc"><img src="{{ absolute_url("img/github.png") }}" alt="gh"></a>
+        </div>
+    </div>
+{% endblock %}
