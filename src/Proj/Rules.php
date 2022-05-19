@@ -155,7 +155,7 @@ class Rules
                 }
             }
 
-            if ($aceCount == 1 and $aceIndex != -1) {
+            if ($aceIndex != -1) {
                 $aceValue = $hand[$aceIndex]->value;
                 $hand[$aceIndex]->value = $aceValue == 14 ? 1 : 14;
                 usort($hand, fn($a, $b) => $a->value - $b->value);

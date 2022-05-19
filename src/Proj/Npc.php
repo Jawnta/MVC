@@ -64,7 +64,6 @@ class Npc
 
         $cards = ["ace", "king", "queen", "jack"];
         $deck = $session->get('pokerDeck');
-        $npc = $session->get('pokerNpc');
         $hand = $this->hand;
         $currentStanding = $rule->evaluateAndGetHand($session, "pokerNpc");
         $index = -1;

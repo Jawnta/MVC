@@ -258,6 +258,37 @@ class CompareScoreTest extends TestCase
         $this->assertEquals("player", $res);
     }
 
+    public function testCompareScoreFourOfAKindSame(): void
+    {
+        $array = [
+            new Card("hearts", 4, "four"),
+            new Card("spades", 4, "four"),
+            new Card("diamonds", 4, "four"),
+            new Card("clubs", 4, "four"),
+            new Card("hearts", 8, "eight")
+        ];
+
+        $array2 = [
+            new Card("hearts", 8, "eight"),
+            new Card("spades", 8, "eight"),
+            new Card("diamonds", 3, "three"),
+            new Card("spades", 8, "eight"),
+            new Card("hearts", 8, "eight")
+        ];
+
+        $session = new Session(new MockArraySessionStorage());
+        $player = new Player();
+        $player->hand = $array;
+        $session->set('pokerPlayer', $player);
+        $npc = new Npc();
+        $npc->hand = $array2;
+        $session->set('pokerNpc', $npc);
+
+        $compare = new CompareScore();
+        $res = $compare->compareHands($session);
+        $this->assertEquals("npc", $res);
+    }
+
     public function testCompareScoreThreeOfAKind(): void
     {
         $array = [

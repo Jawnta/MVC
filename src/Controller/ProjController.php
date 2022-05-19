@@ -119,11 +119,5 @@ class ProjController extends AbstractController
 
         return $this->redirectToRoute('projHome');
     }
-
-    function write_to_console($data) {
-
-        $console = 'console.log(' . json_encode($data) . ');';
-        $console = sprintf('<script>%s</script>', $console);
-        echo $console;
-    }
+    
 }
