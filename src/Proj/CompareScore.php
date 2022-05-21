@@ -13,6 +13,7 @@ class CompareScore
 {
     /**
      * @param SessionInterface $session
+     * @param $character
      * @return array
      */
     public function getHand(SessionInterface $session, $character): array

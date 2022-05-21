@@ -75,8 +75,9 @@ class Npc
             foreach ($this->hand as $card) {
                 $index++;
                 if (!in_array($card->title, $cards)){
-                    unset($this->hand[$index]); // remove item at index 0
-                    $hand = array_values($hand); // 'reindex' array
+                    unset($this->hand[$index]);
+                    $handIndexed = array_values($hand);
+                    $hand = $handIndexed;
 
                     $this->hand[] = array_pop($deck);
                 }

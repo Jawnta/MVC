@@ -20,9 +20,8 @@ class Rules
     {
         $player = $this->getChar($session, $character);
         $hand = $player->hand;
-        $handSize = sizeof($hand);
-
-        for ($x = 0; $x < $handSize; $x++) {
+        $this->write_to_console($hand);
+        for ($x = 0; $x < 5; $x++) {
             if ($hand[$x]->title == "ace") {
                 $hand[$x]->value = 14;
             }
@@ -31,6 +30,13 @@ class Rules
 
 
         return $hand[4];
+    }
+
+    function write_to_console($data) {
+
+        $console = 'console.log(' . json_encode($data) . ');';
+        $console = sprintf('<script>%s</script>', $console);
+        echo $console;
     }
 
     /**

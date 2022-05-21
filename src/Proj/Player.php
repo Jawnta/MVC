@@ -23,7 +23,7 @@ class Player
      * @param array $hand
      * @param int $balance
      * @param int $bet
-     * @param false $replaced
+     * @param bool $replaced
      * @param string $currentHand
      */
     public function __construct(
