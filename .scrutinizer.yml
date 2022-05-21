@@ -16,7 +16,9 @@ filter:
       src/Kernel.php,
       src/Controller/*,
       src/Entity/*,
-      src/Repository/*
+      src/Repository/*,
+      src/Proj/HighScoreList*
+
   ]
 
 build:

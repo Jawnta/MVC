@@ -33,7 +33,7 @@ class PlayerTest extends TestCase
         $session = new Session(new MockArraySessionStorage());
         $array = [
             new Card("hearts", 2, "two"),
-            new Card("diamonds", 2, "two"),
+            new Card("diamonds", 6, "six"),
             new Card("clubs", 3, "three"),
             new Card("hearts", 4, "four"),
             new Card("hearts", 5, "five")
@@ -42,7 +42,8 @@ class PlayerTest extends TestCase
         $player->hand = $array;
         $session->set('pokerPlayer', $player);
 
-        $request = new Request([["two_of_hearts_svg"]]);
+        $request = new Request();
+        $request->request->add(["two_of_hearts_svg" => "two_of_hearts_svg"]);
         $card = [new Card("hearts", 14, "ace")];
         $session->set('pokerDeck', $card);
 
@@ -50,6 +51,7 @@ class PlayerTest extends TestCase
 
         $player = $session->get('pokerPlayer');
         $this->assertEquals(true, $player->replaced);
+        $this->assertEquals("ace", $player->hand[4]->title);
 
     }
 

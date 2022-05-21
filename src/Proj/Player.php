@@ -81,6 +81,7 @@ class Player
         $rule = New Rules();
         $deck = $session->get('pokerDeck');
         $player = $session->get('pokerPlayer');
+
         foreach ($request->request->keys() as $card) {
             $index = $this->getCardIndexByImgPath($card, $player);
             array_splice($player->hand, $index, 1);

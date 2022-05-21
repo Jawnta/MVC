@@ -34,6 +34,7 @@ class HighScoreList extends AbstractController
      * @param ManagerRegistry $doctrine
      * @param $name
      * @param $balance
+     * @param null $dateTime
      * @return HighScore
      */
     public function addEntry(ManagerRegistry $doctrine, $name, $balance, $dateTime = null): HighScore
@@ -92,6 +93,7 @@ class HighScoreList extends AbstractController
         $dateThree = date_create_from_format('j-M-Y', '20-Apr-2022');
         $dates = [$dateOne, $dateTwo, $dateThree];
         if (!$entries == []) {
+
             for ($i=0; $i < $entriesSize; $i++){
                 $this->deleteEntry($doctrine, $entries[$i]->id);
             }
