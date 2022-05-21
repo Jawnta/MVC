@@ -143,11 +143,8 @@ class ProjController extends AbstractController
      */
     public function pokerResetDb(HighScoreRepository $highScoreRepository, ManagerRegistry $doctrine): RedirectResponse
     {
-        try {
-            $this->highScore->resetDb($highScoreRepository, $doctrine);
-        } catch (OptimisticLockException | ORMException $e) {
-        }
 
+        $this->highScore->resetDb($highScoreRepository, $doctrine);
         return $this->redirectToRoute('highScore');
     }
 
@@ -156,7 +153,6 @@ class ProjController extends AbstractController
      */
     public function addHighScore(ManagerRegistry $doctrine, Request $request): RedirectResponse
     {
-        $values = $request->request->keys();
         $hs = new HighScoreList();
         $name = $request->get('f_name');
         $balance = $request->get('f_balance');

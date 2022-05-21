@@ -13,7 +13,7 @@ filter:
       build/*,
       config/*,
       docs/*,
-      src/Kernel.php
+      src/Kernel.php,
       src/Controller/*,
       src/Entity/*,
       src/Repository/*

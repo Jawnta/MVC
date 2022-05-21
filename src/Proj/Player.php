@@ -49,7 +49,7 @@ class Player
     public function playerBet(SessionInterface $session, Request $request)
     {
         $bet = $request->get('playerBet');
-        $player = $session->get('player');
+        $player = $session->get('pokerPlayer');
         $player->bet = $bet;
         $player->balance -= $bet;
     }
