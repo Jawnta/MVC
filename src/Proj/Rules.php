@@ -3,28 +3,30 @@
 namespace App\Proj;
 
 use Symfony\Component\HttpFoundation\Request;
-
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Class for rules
+ * @SuppressWarnings(ShortVariable)
  */
 class Rules
 {
     /**
      * @param SessionInterface $session
-     * @param $character
+     * @param string $character
      * @return object
      */
-    public function getHighCard(SessionInterface $session, $character): object
+    public function getHighCard(SessionInterface $session, string $character): object
     {
         $player = $this->getChar($session, $character);
         $hand = $player->hand;
-        for ($x = 0; $x < 5; $x++) {
-            if ($hand[$x]->title == "ace") {
-                $hand[$x]->value = 14;
+
+        foreach ($hand as $card) {
+            if ($card->title == "ace") {
+                $card->value = 14;
             }
         }
+
         usort($hand, fn($a, $b) => $a->value - $b->value);
 
 
@@ -33,10 +35,10 @@ class Rules
 
     /**
      * @param SessionInterface $session
-     * @param $character
+     * @param string $character
      * @return bool
      */
-    public function isPair(SessionInterface $session, $character): bool
+    public function isPair(SessionInterface $session, string $character): bool
     {
         $player = $this->getChar($session, $character);
         $hand = $player->hand;
@@ -46,21 +48,20 @@ class Rules
         }
         $result = array_count_values($arr);
 
-        foreach ($result as $key => $value) {
+        foreach (array_values($result) as $value) {
             if ($value == 2) {
                 return true;
             }
         }
         return false;
-
     }
 
     /**
      * @param SessionInterface $session
-     * @param $character
+     * @param string $character
      * @return bool
      */
-    public function isTwoPair(SessionInterface $session, $character): bool
+    public function isTwoPair(SessionInterface $session, string $character): bool
     {
         $player = $this->getChar($session, $character);
         $hand = $player->hand;
@@ -84,10 +85,10 @@ class Rules
 
     /**
      * @param SessionInterface $session
-     * @param $character
+     * @param string $character
      * @return bool
      */
-    public function isThreeOfAKind(SessionInterface $session, $character): bool
+    public function isThreeOfAKind(SessionInterface $session, string $character): bool
     {
         $player = $this->getChar($session, $character);
         $hand = $player->hand;
@@ -97,21 +98,20 @@ class Rules
         }
         $result = array_count_values($arr);
 
-        foreach ($result as $key => $value) {
+        foreach (array_values($result) as $value) {
             if ($value == 3) {
                 return true;
             }
         }
         return false;
-
     }
 
     /**
      * @param SessionInterface $session
-     * @param $character
+     * @param string $character
      * @return bool
      */
-    public function isFourOfAKind(SessionInterface $session, $character): bool
+    public function isFourOfAKind(SessionInterface $session, string $character): bool
     {
         $player = $this->getChar($session, $character);
         $hand = $player->hand;
@@ -121,7 +121,7 @@ class Rules
         }
         $result = array_count_values($arr);
 
-        foreach ($result as $key => $value) {
+        foreach (array_values($result) as $value) {
             if ($value == 4) {
                 return true;
             }
@@ -131,10 +131,10 @@ class Rules
 
     /**
      * @param SessionInterface $session
-     * @param $character
+     * @param string $character
      * @return bool
      */
-    public function isStraight(SessionInterface $session, $character): bool
+    public function isStraight(SessionInterface $session, string $character): bool
     {
         $player = $this->getChar($session, $character);
         $hand = $player->hand;
@@ -164,10 +164,10 @@ class Rules
     }
 
     /**
-     * @param $hand
+     * @param array<object> $hand
      * @return bool
      */
-    public function checkIfStraight($hand): bool
+    public function checkIfStraight(array $hand): bool
     {
         $handSize = sizeof($hand);
         for ($x = 0; $x < $handSize; $x++) {
@@ -187,11 +187,11 @@ class Rules
 
     /**
      * @param SessionInterface $session
-     * @param $character
-     * @param $shouldBeRoyal
+     * @param string $character
+     * @param bool $shouldBeRoyal
      * @return bool
      */
-    public function isStraightFlush(SessionInterface $session, $character, $shouldBeRoyal): bool
+    public function isStraightFlush(SessionInterface $session, string $character, bool $shouldBeRoyal): bool
     {
         $player = $this->getChar($session, $character);
         $isStraight = $this->isStraight($session, $character);
@@ -215,10 +215,10 @@ class Rules
 
     /**
      * @param SessionInterface $session
-     * @param $character
+     * @param string $character
      * @return bool
      */
-    public function isFlush(SessionInterface $session, $character): bool
+    public function isFlush(SessionInterface $session, string $character): bool
     {
         $player = $this->getChar($session, $character);
         $hand = $player->hand;
@@ -228,7 +228,7 @@ class Rules
         }
         $result = array_count_values($arr);
 
-        foreach ($result as $key => $value) {
+        foreach (array_values($result) as $value) {
             if ($value == 5) {
                 return true;
             }
@@ -238,10 +238,10 @@ class Rules
 
     /**
      * @param SessionInterface $session
-     * @param $character
+     * @param string $character
      * @return bool
      */
-    public function isFullHouse(SessionInterface $session, $character): bool
+    public function isFullHouse(SessionInterface $session, string $character): bool
     {
         $player = $this->getChar($session, $character);
         $hand = $player->hand;
@@ -253,7 +253,7 @@ class Rules
         }
         $result = array_count_values($arr);
 
-        foreach ($result as $key => $value) {
+        foreach (array_keys($result) as $key) {
             if (in_array(2, $result) and in_array(3, $result)) {
                 array_push($fullHouse, $key);
             }
@@ -268,20 +268,20 @@ class Rules
 
     /**
      * @param SessionInterface $session
-     * @param $character
-     * @return object|array
+     * @param string $character
+     * @return object
      */
-    public function getChar(SessionInterface $session, $character): object|array
+    public function getChar(SessionInterface $session, string $character): object
     {
         return $session->get($character);
     }
 
     /**
      * @param SessionInterface $session
-     * @param $character
+     * @param string $character
      * @return string
      */
-    public function evaluateAndGetHand(SessionInterface $session, $character): string
+    public function evaluateAndGetHand(SessionInterface $session, string $character): string
     {
         $rules = [
             "Royal Straight Flush" => $this->isStraightFlush($session, $character, true),
@@ -296,12 +296,11 @@ class Rules
         ];
 
         foreach ($rules as $key => $value) {
-            if ($value)  {
+            if ($value) {
                 return $key;
             }
         }
         $card = $this->getHighCard($session, $character);
         return $card->title;
     }
-
 }

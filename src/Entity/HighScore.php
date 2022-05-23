@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\HighScoreRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @SuppressWarnings(ShortVariable)
+ */
 #[ORM\Entity(repositoryClass: HighScoreRepository::class)]
 class HighScore
 {

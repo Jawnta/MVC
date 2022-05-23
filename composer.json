@@ -91,7 +91,7 @@
         "phpcs": "tools/php-codesniffer/vendor/bin/phpcs --standard=PSR12 src",
         "phpcbf": "tools/php-codesniffer/vendor/bin/phpcbf --standard=PSR12 src",
         "phpmd": "tools/phpmd/vendor/bin/phpmd src text phpmd.xml || true",
-        "phpstan": "tools/phpstan/vendor/bin/phpstan analyse -l 9 src || true",
+        "phpstan": "tools/phpstan/vendor/bin/phpstan analyse -l 6 src/Proj || true",
         "phpcpd": "tools/phpcpd/vendor/bin/phpcpd src || true",
         "phpdoc": "tools/phpdoc/phpdoc",
         "phpunit": "XDEBUG_MODE=coverage bin/phpunit",
@@ -112,6 +112,7 @@
         }
     },
     "require-dev": {
+        "phpstan/phpstan": "^1.6",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "6.0.*",
         "symfony/css-selector": "6.0.*",

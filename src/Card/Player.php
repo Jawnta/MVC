@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Player class for blackjack game
+ * @SuppressWarnings(PHPMD)
  */
 class Player
 {

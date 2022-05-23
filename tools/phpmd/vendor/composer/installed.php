@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '1ef33aa7a8f049bb3dd790caf86bec54c5dfc67c',
+        'reference' => '95787a90a38205e9ae371344dfed462b021f1bf6',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '1ef33aa7a8f049bb3dd790caf86bec54c5dfc67c',
+            'reference' => '95787a90a38205e9ae371344dfed462b021f1bf6',
             'dev_requirement' => false,
         ),
         'composer/pcre' => array(

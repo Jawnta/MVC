@@ -239,8 +239,93 @@
 
         <!-- Redovisningstext för kmom -->
         <h2>Kmom07 - Kmom10</h2>
+        <h3>Krav 1-3</h3>
         <p>
-            Redovisningstext för kmom
+            Det första jag gjorde efter jag hade bestämt mig för vilket projekt jag skulle göra var att skapa
+            kontrollern för projektet och sedan påbörjade jag designen av själva projektsidan. Efter designen var på
+            plats så skapade jag några klasser som t.ex. Player, Npc, PokerDeck och Game. I klasserna definierade jag
+            olika metoder för att få en överblick om vad jag antog att jag behövde implementera.
+        </p>
+        <p>
+            Eftersom ett av kraven var att man skulle ha en "helt ny sida" så skapade jag en ny bas fil som jag använder
+            till projektets sida samt en egen css fil för att få en helt annan stil utan att behöva bygga på den
+            befintliga css filen. Detta var såklart den enklaste delen av projektet. När jag istället började koda
+            själva spelet så märkte jag ganska snabbt att det var en utmaning att få till det som jag hade visualiserat.
+            När jag skapat upp grundklasserna, player, npc och gameklassen så fixade jag först att player hade en hand
+            med fem kort objekt så att jag kunde börja skriva logiken till att komma fram till vad det är för värde på
+            handen. Det var då jag skapade Rules klassen där jag har metoder som "isPair, isFlush...", med andra ord en
+            metod för varje möjlig typ av hand. I Rules klassen skapade jag sedan en metod som heter evaluateHand som
+            har en "dictionary" med strängar "Pair, Two pair, Three of a kind" som nycklar och värdet är ett anrop på
+            motsvarade metod som returnerar true / false beroende på om man har en specifik hand. Skulle handen bestå av
+            en royal straight flush så returneras strängen "Royal straight flush" som sedan används för att enkelt
+            skriva ut "current hand" på hemsidan. Dessa strängar som returneras användas också i min CompareScore klass.
+        </p>
+        <p>
+            CompareScore klassen gör precis som vad den heter den jämför spelar- och npc handen och returnerar "player",
+            "npc" eller "draw". I denna klass finns en metod som heter compareHands och vad den gör är att hämtar player
+            och npc objekten från session och sedan anropar evaluateHand för båda spelarna. Därefter har jag en
+            dictionary igen där nycklarna är samma som dictionaryn i rules klassen men värderna är istället 9 - 1 där 9
+            är Royal straight flush och 1 är par. Sedan kikar jag om värdet från evaluateHand finns i dicten. Om det
+            finns så tilldelar jag värdet från dicten till en ny variabel och gör likadant för npc handen så jag enkelt
+            kan jämföra om "playerHandRating >, <, == npcHandRating". Skulle händerna vara likadana exempelvis att båda
+            har en stege, färg eller annan hand så har jag gjort en switch / case sats för detta. I switch case satasen
+            så anropas olika metoder beroende på vad det är för hand. Den ena metoden som heter
+            "getHighestValueWithOccurrence" räknar ut vinnaren för om händerna är, kåk, triss eller fyrtal medans en
+            annan metoder räknar ut vinnaren som det är par eller två par.
+        </p>
+        <p>
+            Game klassen är ganska enkel och innehåller bara tre olika metoder. Dessa metoder är "preStart, setStarted
+            och newRound". Metoden preStart körs när man startar spelet första gången, den skapar ny instans av
+            klasserna player, npc, pokerDeck och rules och drar de initiala fem korten för både användaren och datorn
+            och sätter sedan både player och npc objektet till session. NewRound metoden återställer i stort sätt
+            allting förutom balance hos playern. Så när man klickar på "New round" på sidan så anropas denna metoden och
+            så sätter jag bl.a. händerna till tom array och sätter en helt ny deck till session då det alltid ska finnas
+            52 kort i leken vid varje påbörjad runda.
+        </p>
+        <p>
+            Eftersom jag valde att göra ett pokerspel så var det svårt att hitta en funktionell användning för databasen
+            då majoriteten av allt som sparas, sparas i session. Efter lite funderande så kom jag på lösningen att göra
+            en highscore lista. Så min databas består av ett table med värderna "string name, int balance och date
+            'datum'. Den personen på highscore listan som har mest balance "leder". För att lägga till sig i highscore
+            listan så har jag valt att lägga till ett litet formulär till höger om spelplanen där man fyller i sitt namn
+            och när man klickar "Add to highscore" så läggs namnet, balance och dagens datum in i databasen.
+            Återställningen av databasen är lite sisådär jag är inte helt nöjd med sättet jag gjort det på men jag kunde
+            inte lösa något annat sätt. Det jag gör är att jag loopar igenom databasen och tar bort alla entries som
+            finns och därefter loopar jag igenom hårdkodade värden som jag lägger till igen.
+        </p>
+
+        <h3>Allmänt</h3>
+        <p>
+            Jag tycker att det var ett roligt projekt då man kunde välja sin utmaning själv. Jag kikade på de olika
+            valen och insåg att ett poker spel är något jag kommer finna utmanande men ändå klarar av att slutföra.
+            Det svåraste i detta projektet skulle jag säga var att skriva logiken för att räkna ut handens värde samt
+            att jämföra de olika händerna. Det svåraste var att jämföra händerna om dem har samma typ av hand som jag
+            nämnt tidigare i texten. Om jag skulle ta ut högsta värdet av en kåk så kunde jag bara ta ut värdet som
+            återkom tre gånger men när man t.ex. hade två par så kunde jag inte returnera värdet som återkom två gånger
+            då det fanns två olika par. Det jag gjorde här var att lägga till värderna som återkom två gånger i en lista
+            och gjorde sedan den listan unik och tog ut det högsta värdet därifrån.
+        </p>
+        <p>
+            När det gäller phpstan så klarar jag level 6 men över level 6 lyckades jag inte lösa. Försökte läsa och
+            testa mig fram till en lösning men lyckades dessvärre inte. När det gäller phpMd så går den igenom allt
+            förutom 4 delar. Den första är att min controller har 11 public methods och 10 är högst, det kändes onödigt
+            att bryta ut 1 route till en ny controller men skulle det vara så att det krävs så tar jag gärna det på
+            feedback. Det andra är att min metod compareHands har 16 cyclomatic complexity och 10 är högst, jag har
+            försökt att få ner komplexiteten men inte riktigt klurat ut bästa sätt. Tredje och fjärde felet är att Game
+            och Player klassen har en bool i konstruktorn vilket är "violation of SRP". Anledningen till att jag har
+            bools här är på grund av att jag ville ha en bool för när player har bytt ut korten och i game klassen så är
+            det för att veta när spelet är startat. Återigen om detta inte är OK så tar jag gärna feedback och så får
+            jag helt enkelt försöka fixa det på annat sätt.
+        </p>
+
+        <h3>Avslutningsvis</h3>
+        <p>
+            I början av kursen så var jag ganska tveksam då PHP inte är favoritspråket men destå längre in i kursen vi
+            kom destå roligare blev det. Jag tycker att materialet har fungerat bra och har inga större anmärkningar att
+            göra. När det gäller enhetstestandet så tycker jag att det borde finnas mer information i form av artiklar
+            eller i föreläsningar om mockning. Speciellt information om hur man mockar session och request. Jag hittade
+            info och exempel på stack om hur man gör detta vilket resulterade i att jag kunde göra de tester jag ville
+            men lite mer fördjupning skulle vara bra. Överlag så tycker jag att kursen har varit bra och ger den 7/10.
         </p>
     </div>
 

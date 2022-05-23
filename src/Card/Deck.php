@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Deck class which holds all cards in a deck.
+ * @SuppressWarnings(PHPMD)
  */
 class Deck
 {

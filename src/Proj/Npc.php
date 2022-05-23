@@ -4,7 +4,6 @@ namespace App\Proj;
 
 use App\Card\Card;
 use Symfony\Component\HttpFoundation\Request;
-
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
@@ -12,31 +11,34 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  */
 class Npc
 {
+    /**
+     * @var array|object[]
+     */
     public array $hand;
     public string $currentHand;
 
 
     /**
-     * @param array $hand
+     * @param array<object> $hand
      * @param string $currentHand
      */
     public function __construct(array $hand = [], string $currentHand = "")
     {
         $this->hand = $hand;
         $this->currentHand = $currentHand;
-
     }
 
     /**
      * @param SessionInterface $session
-     * @param $npc
+     * @param object $npc
+     * @return void
      */
-    public function npcDraw(SessionInterface $session, $npc)
+    public function npcDraw(SessionInterface $session, object $npc)
     {
         $deck = $session->get('pokerDeck');
         $cardsToBeDrawn = 5;
 
-        for ($x = 0; $x < $cardsToBeDrawn; $x++){
+        for ($x = 0; $x < $cardsToBeDrawn; $x++) {
             $npc->hand[] = array_pop($deck);
             $session->set('pokerDeck', $deck);
         }
@@ -46,8 +48,10 @@ class Npc
 
     /**
      * @param SessionInterface $session
+     * @return void
      */
-    public function npcRePick(SessionInterface $session) {
+    public function npcRePick(SessionInterface $session)
+    {
 
         $rule = new Rules();
         $rules = [
@@ -74,7 +78,7 @@ class Npc
         if (!$result) {
             foreach ($this->hand as $card) {
                 $index++;
-                if (!in_array($card->title, $cards)){
+                if (!in_array($card->title, $cards)) {
                     unset($this->hand[$index]);
                     $handIndexed = array_values($hand);
                     $hand = $handIndexed;
@@ -82,10 +86,7 @@ class Npc
                     $this->hand[] = array_pop($deck);
                 }
             }
-
         }
         $session->set('pokerNpc', $this);
     }
-
-
 }

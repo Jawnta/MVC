@@ -14,16 +14,17 @@
             <a href="{{ url("projHome") }}">Home</a>
         </li>
         <li>
-            <a href="{{ path("highScore") }}">Highscore</a>
+            <a href="{{ path("pokerReset") }}">Reset game</a>
         </li>
         <li>
-            <a href="{{ path("aboutProj") }}">About</a>
+            <a href="{{ path("highScore") }}">Highscore</a>
         </li>
+
         <li>
             <a href="{{ path("pokerResetDb") }}">Reset database</a>
         </li>
         <li>
-            <a href="{{ path("pokerReset") }}">Reset game</a>
+            <a href="{{ path("aboutProj") }}">About</a>
         </li>
     </ul>
 </div>
@@ -33,11 +34,11 @@
         Default content
     {% endblock %}
 </div>
-{#<div class="footer">#}
-{#    Jonatan Robertsson, jorp21@student.bth.se#}
-{#    <div class="logos">#}
-{#        <a href="https://github.com/Jawnta/MVC"><img src="{{ asset("img/github_small.png") }}" alt="gh"></a>#}
-{#    </div>#}
-{#</div>#}
+<div class="footer">
+    <p>Jonatan Robertsson, jorp21@student.bth.se</p>
+    <div class="logos">
+        <a href="https://github.com/Jawnta/MVC"><img src="{{ asset("img/github_small.png") }}" alt="gh"></a>
+    </div>
+</div>
 </body>
 </html>

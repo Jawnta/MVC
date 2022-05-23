@@ -14,7 +14,7 @@ body {
     justify-content: center;
     background-color: #1e2126;
     margin-top: -4px;
-    border: 5px solid #292e34;;
+    border: 5px solid #292e34;
 }
 .poker-nav ul {
     list-style-type: none;
@@ -47,7 +47,7 @@ body {
     width: 1190px;
     margin: 0;
     background-color: #1e2126;
-    border: 5px solid #292e34;;
+    border: 5px solid #292e34;
     position: relative;
 }
 
@@ -286,4 +286,66 @@ body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.footer {
+    display: flex;
+    width: 1190px;
+    height: 100px;
+    align-items: center;
+    border: 5px solid #292e34;
+}
+
+.footer p {
+    margin-left: 10px;
+}
+
+.logos img {
+    height: 50px;
+    width: auto;
+}
+
+.logos {
+    display: flex;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.doc-box {
+    display: flex;
+
+}
+.about-content {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0 20px 20px 20px;
+}
+
+.doc-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.doc-box  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #1e2126;
+}
+
+.doc-box  li {
+    float: left;
+}
+
+.doc-box  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.doc-box li a:hover {
+    color: #b0b0b0;
 }

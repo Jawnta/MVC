@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @SuppressWarnings(ShortVariable)
+ */
 class GameController extends AbstractController
 {
     /**
@@ -28,6 +31,7 @@ class GameController extends AbstractController
     {
         return $this->render('card/game/doc.html.twig');
     }
+
     /**
      * @Route("/card/game/blackJack", name="blackJack")
      */
@@ -40,7 +44,13 @@ class GameController extends AbstractController
             $data = [$dealer, $player, $sessDeck];
             $blackJack = $session->get('blackJackGame');
 
-            return $this->render('card/game/blackJack.html.twig', ['deck' => $data, 'game' => $blackJack, 'player' => $player]);
+            return $this->render(
+                'card/game/blackJack.html.twig',
+                [
+                    'deck' => $data,
+                    'game' => $blackJack,
+                    'player' => $player]
+            );
         }
         $blackJack = new BlackJack();
         $session->set('blackJackGame', $blackJack);
@@ -48,6 +58,7 @@ class GameController extends AbstractController
 
         return $this->render('card/game/blackJack.html.twig', ['game' => $blackJack, 'player' => $player]);
     }
+
     /**
      * @Route("/card/game/blackJackHit", name="hit", methods={"POST"})
      */
@@ -97,6 +108,7 @@ class GameController extends AbstractController
         $bj->endOfRound = false;
         return $this->redirect('blackJack');
     }
+
     /**
      * @Route("/card/game/bet", name="bet", methods={"POST"})
      */

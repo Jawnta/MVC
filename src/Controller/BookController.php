@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @SuppressWarnings(ShortVariable)
+ */
 class BookController extends AbstractController
 {
     private Book $book;
@@ -23,7 +26,6 @@ class BookController extends AbstractController
     #[Pure] public function __construct()
     {
         $this->book = new Book();
-
     }
 
     #[Route('/book', name: 'app_book')]
@@ -54,7 +56,8 @@ class BookController extends AbstractController
     /**
      * @Route("/book/create", name="create_book", methods={"POST"})
      */
-    public function createBook(ManagerRegistry $doctrine, Request $request): RedirectResponse {
+    public function createBook(ManagerRegistry $doctrine, Request $request): RedirectResponse
+    {
 
         $name = $request->get('b_name');
         $isbn = $request->get('b_isbn');

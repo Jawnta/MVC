@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Card class
+ * @SuppressWarnings(PHPMD)
  */
 class Card
 {

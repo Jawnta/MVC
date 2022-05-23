@@ -7,9 +7,9 @@ use App\Repository\BooksRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
 /**
  * Class for book
+ * @SuppressWarnings(ShortVariable)
  */
 class Book extends AbstractController
 {
@@ -47,7 +47,8 @@ class Book extends AbstractController
     /**
      * finds and returns a book from $id
      */
-    public function getOneBook(ManagerRegistry $doctrine, $id) {
+    public function getOneBook(ManagerRegistry $doctrine, $id)
+    {
         $entityManager = $doctrine->getManager();
         return $entityManager->getRepository(Books::class)->find($id);
     }
@@ -55,13 +56,14 @@ class Book extends AbstractController
     /**
      * method for updating properties of a book
      */
-    public function updateBook(ManagerRegistry $doctrine, $id, $name, $isbn, $author, $description, $image) {
+    public function updateBook(ManagerRegistry $doctrine, $id, $name, $isbn, $author, $description, $image)
+    {
         $entityManager = $doctrine->getManager();
         $book = $entityManager->getRepository(Books::class)->find($id);
 
         if (!$book) {
             throw $this->createNotFoundException(
-                'No product found for id '.$id
+                'No product found for id ' . $id
             );
         }
 
@@ -76,18 +78,18 @@ class Book extends AbstractController
     /**
      * method for deleting a book from the database
      */
-    public function deleteBook(ManagerRegistry $doctrine, $id) {
+    public function deleteBook(ManagerRegistry $doctrine, $id)
+    {
         $entityManager = $doctrine->getManager();
         $product = $entityManager->getRepository(Books::class)->find($id);
 
         if (!$product) {
             throw $this->createNotFoundException(
-                'No product found for id '.$id
+                'No product found for id ' . $id
             );
         }
 
         $entityManager->remove($product);
         $entityManager->flush();
     }
-
 }

@@ -3,7 +3,6 @@
 namespace App\Proj;
 
 use Symfony\Component\HttpFoundation\Request;
-
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -12,6 +11,9 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  */
 class Player
 {
+    /**
+     * @var array|object[]
+     */
     public array $hand;
     public int $balance;
     public int $bet;
@@ -20,7 +22,7 @@ class Player
 
     /**
      * Constructor which holds properties below.
-     * @param array $hand
+     * @param array<object> $hand
      * @param int $balance
      * @param int $bet
      * @param bool $replaced
@@ -32,8 +34,7 @@ class Player
         int $bet = 0,
         bool $replaced = false,
         string $currentHand = ""
-    )
-    {
+    ) {
         $this->hand = $hand;
         $this->balance = $balance;
         $this->bet = $bet;
@@ -45,6 +46,7 @@ class Player
     /**
      * @param SessionInterface $session
      * @param Request $request
+     * @return void
      */
     public function playerBet(SessionInterface $session, Request $request)
     {
@@ -56,9 +58,10 @@ class Player
 
     /**
      * @param SessionInterface $session
-     * @param $player
+     * @param object $player
+     * @return void
      */
-    public function playerDraw(SessionInterface $session, $player)
+    public function playerDraw(SessionInterface $session, object $player)
     {
         $deck = $session->get('pokerDeck');
         $cardsToBeDrawn = 5;
@@ -69,16 +72,16 @@ class Player
         }
 
         $session->set('pokerPlayer', $player);
-
     }
 
     /**
      * @param Request $request
      * @param Session $session
+     * @return void
      */
     public function rePickCards(Request $request, Session $session)
     {
-        $rule = New Rules();
+        $rule = new Rules();
         $deck = $session->get('pokerDeck');
         $player = $session->get('pokerPlayer');
 
@@ -86,7 +89,6 @@ class Player
             $index = $this->getCardIndexByImgPath($card, $player);
             array_splice($player->hand, $index, 1);
             $player->hand[] = array_pop($deck);
-
         }
 
         $player->replaced = true;
@@ -97,11 +99,11 @@ class Player
     }
 
     /**
-     * @param $cardName
-     * @param $player
+     * @param string $cardName
+     * @param object $player
      * @return int
      */
-    private function getCardIndexByImgPath($cardName, $player): int
+    private function getCardIndexByImgPath(string $cardName, object $player): int
     {
         $handSize = sizeof($player->hand);
         for ($x = 0; $x < $handSize; $x++) {
@@ -116,6 +118,7 @@ class Player
     /**
      * @param SessionInterface $session
      * @param int $bet
+     * @return void
      */
     public function setBet(SessionInterface $session, int $bet): void
     {
@@ -137,6 +140,7 @@ class Player
     /**
      * @param SessionInterface $session
      * @param int $balance
+     * @return void
      */
 
     public function setBalance(SessionInterface $session, int $balance)
@@ -155,9 +159,10 @@ class Player
 
     /**
      * @param Session $session
-     * @param $bet
+     * @param int $bet
+     * @return void
      */
-    public function makeBet(Session $session, $bet)
+    public function makeBet(Session $session, int $bet)
     {
         $player = $session->get('pokerPlayer');
         $balance = $player->getBalance() - $bet;
@@ -166,5 +171,4 @@ class Player
 
         $session->set('pokerPlayer', $player);
     }
-
 }

@@ -9,7 +9,6 @@ use JetBrains\PhpStorm\Pure;
  */
 class Dealer
 {
-
     public array $hand;
     public int $score;
     /**

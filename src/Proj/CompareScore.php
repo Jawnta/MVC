@@ -3,7 +3,6 @@
 namespace App\Proj;
 
 use Symfony\Component\HttpFoundation\Request;
-
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
@@ -13,26 +12,25 @@ class CompareScore
 {
     /**
      * @param SessionInterface $session
-     * @param $character
-     * @return array
+     * @param string $character
+     * @return array<object>
      */
-    public function getHand(SessionInterface $session, $character): array
+    public function getHand(SessionInterface $session, string $character): array
     {
         $player = $session->get($character);
         return $player->hand;
-
     }
 
 
     /**
-     * @param $hand
-     * @param $occurrencesToCompare
+     * @param array<object> $hand
+     * @param int $occurrencesToCompare
      * @return int
      * Full house
      * Four of a kind
      * Three of a kind
      */
-    public function getHighestValueWithOccurrences($hand, $occurrencesToCompare): int
+    public function getHighestValueWithOccurrences(array $hand, int $occurrencesToCompare): int
     {
         $valueArr = [];
         foreach ($hand as $card) {
@@ -62,18 +60,19 @@ class CompareScore
         $npcHighCard = $rule->getHighCard($session, "pokerNpc");
         if ($playerHighCard->value > $npcHighCard->value) {
             return "player";
-        }elseif ($playerHighCard->value < $npcHighCard->value) {
+        } elseif ($playerHighCard->value < $npcHighCard->value) {
             return "npc";
         }
         return "draw";
     }
 
     /**
-     * @param $hand
+     * @param array<object> $hand
      * @return int
      * Get the highest value of pairs.
      */
-    private function getHighestValueOfPair ($hand): int {
+    private function getHighestValueOfPair(array $hand): int
+    {
         $valueArr = [];
         foreach ($hand as $card) {
             array_push($valueArr, $card->value);
@@ -91,15 +90,15 @@ class CompareScore
     }
 
     /**
-     * @param $playerValue
-     * @param $npcValue
+     * @param int $playerValue
+     * @param int $npcValue
      * @return string
      */
-    private function compareValues ($playerValue, $npcValue): string
+    private function compareValues(int $playerValue, int $npcValue): string
     {
         if ($playerValue > $npcValue) {
             return "player";
-        }elseif ($playerValue < $npcValue) {
+        } elseif ($playerValue < $npcValue) {
             return "npc";
         }
         return "draw";
@@ -126,17 +125,17 @@ class CompareScore
         ];
 
         $playerHand = $this->getHand($session, "pokerPlayer");
-        $playerCurrentHandStanding = $rule->evaluateAndGetHand($session, 'pokerPlayer');
+        $pCurrentStanding = $rule->evaluateAndGetHand($session, 'pokerPlayer');
         $playerHandValue = 0;
-        if (array_key_exists($playerCurrentHandStanding, $handRating)) {
-            $playerHandValue = $handRating[$playerCurrentHandStanding];
+        if (array_key_exists($pCurrentStanding, $handRating)) {
+            $playerHandValue = $handRating[$pCurrentStanding];
         }
 
         $npcHand = $this->getHand($session, "pokerNpc");
-        $npcCurrentHandStanding = $rule->evaluateAndGetHand($session, 'pokerNpc');
+        $nCurrentStanding = $rule->evaluateAndGetHand($session, 'pokerNpc');
         $npcHandValue = 0;
-        if (array_key_exists($npcCurrentHandStanding, $handRating)) {
-            $npcHandValue = $handRating[$npcCurrentHandStanding];
+        if (array_key_exists($nCurrentStanding, $handRating)) {
+            $npcHandValue = $handRating[$nCurrentStanding];
         }
 
         if ($playerHandValue > $npcHandValue) {
@@ -144,7 +143,7 @@ class CompareScore
         } elseif ($playerHandValue < $npcHandValue) {
             return "npc";
         } elseif ($playerHandValue == $npcHandValue) {
-            switch ($playerCurrentHandStanding) {
+            switch ($pCurrentStanding) {
                 case "Royal Straight Flush":
                     return "draw";
                 case "Flush":
@@ -175,6 +174,4 @@ class CompareScore
         }
         return "Undetermined";
     }
-
-
 }

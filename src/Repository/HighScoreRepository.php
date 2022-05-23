@@ -10,7 +10,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<HighScore>
- *
+ * @SuppressWarnings(PHPMD)
  * @method HighScore|null find($id, $lockMode = null, $lockVersion = null)
  * @method HighScore|null findOneBy(array $criteria, array $orderBy = null)
  * @method HighScore[]    findAll()

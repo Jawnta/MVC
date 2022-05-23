@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use App\Card\Card;
 use App\Proj\CompareScore;
 use App\Proj\Game;
@@ -29,11 +28,17 @@ class ProjController extends AbstractController
     /**
      * construct for ease of access of highscore
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->highScore = new HighScoreList();
     }
+
+
     /**
+     *
      * @Route("/proj/home", name="projHome")
+     * @param SessionInterface $session
+     * @return Response
      */
     public function pokerHome(SessionInterface $session): Response
     {
@@ -48,8 +53,7 @@ class ProjController extends AbstractController
                     'npc' => $npc,
                     'session' => $session,
                     'result' => $result
-                ]
-            );
+                ]);
         }
         $player = new Player();
         $npc = new Npc();
@@ -60,8 +64,7 @@ class ProjController extends AbstractController
                 'npc' => $npc,
                 'session' => $session,
                 'result' => ""
-            ]
-        );
+            ]);
     }
 
     /**
@@ -126,7 +129,7 @@ class ProjController extends AbstractController
     public function highScore(HighScoreRepository $highScoreRepository): Response
     {
         $highScore = $this->highScore->getHighScoreEntries($highScoreRepository);
-        usort($highScore, fn($a, $b) => $b->balance - $a->balance);
+        usort($highScore, fn($valOne, $valTwo) => $valTwo->balance - $valOne->balance);
         return $this->render('proj/highscore.html.twig', ['highScore' => $highScore]);
     }
 
@@ -135,7 +138,7 @@ class ProjController extends AbstractController
      */
     public function about(): Response
     {
-        return $this->render('proj/about.html.twig',);
+        return $this->render('proj/about.html.twig');
     }
 
     /**
@@ -153,10 +156,10 @@ class ProjController extends AbstractController
      */
     public function addHighScore(ManagerRegistry $doctrine, Request $request): RedirectResponse
     {
-        $hs = new HighScoreList();
+        $highScoreList = new HighScoreList();
         $name = $request->get('f_name');
         $balance = $request->get('f_balance');
-        $hs->addEntry($doctrine, $name, intval($balance));
+        $highScoreList->addEntry($doctrine, $name, intval($balance));
 
         return $this->redirectToRoute('highScore');
     }

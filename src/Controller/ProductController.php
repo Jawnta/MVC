@@ -12,7 +12,9 @@ use App\Entity\Product;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Repository\ProductRepository;
 
-
+/**
+ * @SuppressWarnings(ShortVariable)
+ */
 class ProductController extends AbstractController
 {
     #[Route('/product', name: 'app_product')]
@@ -42,7 +44,7 @@ class ProductController extends AbstractController
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
 
-        return new Response('Saved new product with id '.$product->getId());
+        return new Response('Saved new product with id ' . $product->getId());
     }
 
 
@@ -83,7 +85,7 @@ class ProductController extends AbstractController
 
         if (!$product) {
             throw $this->createNotFoundException(
-                'No product found for id '.$id
+                'No product found for id ' . $id
             );
         }
 
@@ -106,7 +108,7 @@ class ProductController extends AbstractController
 
         if (!$product) {
             throw $this->createNotFoundException(
-                'No product found for id '.$id
+                'No product found for id ' . $id
             );
         }
 

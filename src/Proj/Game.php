@@ -7,7 +7,6 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-
 /**
  * Class for Game
  */
@@ -18,15 +17,18 @@ class Game extends AbstractController
     /**
      * @param bool $started
      */
-    public function __construct(bool $started=false) {
+    public function __construct(bool $started = false)
+    {
         $this->started = $started;
     }
 
     /**
      * @param SessionInterface $session
+     * @return void
      */
-    public function preStart(SessionInterface $session) {
-        $rule = New Rules();
+    public function preStart(SessionInterface $session)
+    {
+        $rule = new Rules();
         $deck = new PokerDeck();
         $shuffled = $deck->shuffleDeck();
         $session->set('pokerDeck', $shuffled);
@@ -38,7 +40,6 @@ class Game extends AbstractController
         $npc->currentHand = $rule->evaluateAndGetHand($session, "pokerNpc");
         $session->set('pokerNpc', $npc);
         $session->set('pokerPlayer', $player);
-
     }
 
     /**
@@ -53,14 +54,15 @@ class Game extends AbstractController
 
     /**
      * @param SessionInterface $session
-     *
+     * @return void
      */
-    public function newRound(SessionInterface $session) {
+    public function newRound(SessionInterface $session)
+    {
         $result = $session->get('result');
         $player = $session->get('pokerPlayer');
         $player->hand = [];
         $player->replaced = false;
-        switch ($result){
+        switch ($result) {
             case "player":
                 $player->setBalance($session, $player->getBalance() + ($player->bet * 2));
                 break;
@@ -81,7 +83,7 @@ class Game extends AbstractController
         $player->currentHand = $rule->evaluateAndGetHand($session, "pokerPlayer");
         $npc->npcDraw($session, $npc);
         $npc->currentHand = $rule->evaluateAndGetHand($session, "pokerNpc");
-       
+
 
         $session->set('pokerPlayer', $player);
         $session->set('pokerNpc', $npc);

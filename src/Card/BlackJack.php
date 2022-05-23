@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * BlackJack class holds all game logic
+ * @SuppressWarnings(PHPMD)
  */
 class BlackJack
 {
@@ -160,7 +161,6 @@ class BlackJack
                 $this->roundEndScreen($session, "win");
                 return "win";
             } elseif ($dealerScore < $playerScore) {
-
                 $this->dealerDraw($session, $dealer);
                 $this->score($dealer);
                 $session->set('dealer', $dealer);

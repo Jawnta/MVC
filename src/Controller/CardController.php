@@ -55,11 +55,25 @@ class CardController extends AbstractController
 
         if ($amountOfDrawnCards < 52) {
             $cardToDraw = $newDeck->drawCard($session, $number, $amountOfDrawnCards);
-            return $this->render('card/draw.html.twig', ['data' => $cardToDraw, 'numOfCards' => $amountOfDrawnCards, 'cardToDraw' => $number]);
+            return $this->render(
+                'card/draw.html.twig',
+                [
+                    'data' => $cardToDraw,
+                    'numOfCards' => $amountOfDrawnCards,
+                    'cardToDraw' => $number
+                ]
+            );
         }
 
         $drawnCards = $session->get('drawnCards');
-        return $this->render('card/draw.html.twig', ['data' => $drawnCards, 'numOfCards' => $amountOfDrawnCards, 'cardToDraw' => $number]);
+        return $this->render(
+            'card/draw.html.twig',
+            [
+                'data' => $drawnCards,
+                'numOfCards' => $amountOfDrawnCards,
+                'cardToDraw' => $number
+            ]
+        );
     }
 
     /**

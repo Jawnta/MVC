@@ -12,7 +12,7 @@ class PokerDeck
 {
     /**
      * newDeck creates a deck with 52 cards and 4 suits.
-     * @return array
+     * @return array<object>
      */
     public function newDeck(): array
     {
@@ -47,14 +47,13 @@ class PokerDeck
 
     /**
      * shuffleDeck creates a new deck then shuffles it.
-     * @return array
+     * @return array<object>
      */
     public function shuffleDeck(): array
     {
-        $cardDeck = new pokerDeck();
+        $cardDeck = new PokerDeck();
         $cards = $cardDeck->newDeck();
         shuffle($cards);
         return $cards;
     }
-
 }

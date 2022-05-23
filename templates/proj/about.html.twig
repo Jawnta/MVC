@@ -1,24 +1,70 @@
 {% extends "projBase.html.twig" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}About{% endblock %}
 
 {% block content %}
     <h1>About</h1>
-
+    {# En sida /proj/about som berättar någorlunda utförligt om ditt projekt och vad det handlar om. #}
     <div class="content">
-        <p>
-            MVC fokuserar på objektorienterad programmering inom PHP. Fokus på klassiska objektorienterade
-            konstruktioner, objektorienterad programmering i webbaserat ramverk, databaser och enhetstestning som
-            hanteras tillsammans.
-        </p>
+        <div class="about-content">
+            <h3>Dokumentation</h3>
+            <p>
+                Jag valde att göra ett fem korts pokerspel som projekt då det verkade utmanande men inte omöjligt med
+                tanke
+                på tidsbegränsningen. Mitt mål var att se till att all funktionalitet som jag hade planerat upp för
+                projektet skulle finnas när jag var klar. Funktionaliteten som jag ville implementera var att ha en
+                start
+                knapp som bygger upp själva spelet vid start, en funktion där man ska satsa låtsaspengar, en funktion så
+                man
+                kan byta ut korten på sin hand och även få datorn till att byta ut sina kort. Detta var mitt
+                grundkoncept
+                som utvecklades under projektets gång. Detta projektet behövde också en databas men eftersom i stortsätt
+                all som sparas i spelet sparas i sessions så behövdes inte databasen för just spelet så istället så
+                gjorde
+                jag en highscore lista och la till ett formulär där användaren kan skriva in sitt namn så sparas
+                användarens
+                namn, "pengar" och datumet i databasen som highscore.
+            </p>
+            <p>
+                Projektet i sig handlade om att få till ett bra Ux och logiken kring att bestämma vilken hand spelaren
+                eller
+                datorn har och sedan kunna jämföra händerna och bestämma en vinnare. Min logik var att göra metoder för
+                alla typer av händer, exempelvis, "isPair, isTwoPair, isFlush" osv. Efter dessa metoderna var på plats
+                så
+                fokuserade jag på att göra en klass som jämför händerna. CompareScore klassen har en metod som heter
+                compareHands vilket tar emot både datorn och spelarens hand och sedan bestämmer vinnaren i en switch
+                case
+                sats. Skulle både spelare och datorn ha samma typ av hand så går det på högsta kortet. Exempelvis skulle
+                båda ha kåk så vinner den som har högsta "trissen" i kåken.
+            </p>
 
-        <p>
-            Målet med kursen är att man jag ska bl.a. kunna tillämpa de objektorienterade programmeringsparadigmen genom
-            praktiska övningar och projekt och kunna hantera de verktyg och miljöer som används vid utveckling av
-            databasdrivna webbapplikationer i ett ramverk för webbutveckling.
-        </p>
-        <div class="github">
-            <a href="https://github.com/dbwebb-se/mvc"><img src="{{ absolute_url("img/github.png") }}" alt="gh"></a>
+            <h3>Kodkvalitet</h3>
+            <p>
+                För att säkra min kodkvalitet så har jag testat i princip all min kod, det är några få rader kod som
+                inte är med i kodtäckningen. Jag testade koden medans jag skrev den, när jag var klar med en metod så
+                skrev jag ett test och körde några olika scenarion och när allt fungerade som jag hade tänkt mig så gick
+                jag vidare och implementerade min kod till själva spelet och i användargränssnittet. Scrutinizer är
+                också ett verktyg jag har använt mig för att kontrollera "issues", kodtäckning och komplexitet. När det
+                gäller kodtäckningen så har jag 98.63% och jag har jobbat bort alla "issues". Jag har också lagt till
+                docblock kommentarer för att man lättare ska förstå koden och få en ökad maintainability index.
+            </p>
+        </div>
+        <div class="doc-box">
+            <h3>Analysers</h3>
+            <ul>
+                <li>
+                    <a href="{{ absolute_url("http://www.student.bth.se/~jorp21/dbwebb-kurser/mvc/me/report/docs/api/") }}">phpDoc</a>
+                </li>
+                <li>
+                    <a href="{{ absolute_url("http://www.student.bth.se/~jorp21/dbwebb-kurser/mvc/me/report/docs/metrics/") }}">phpMetrics</a>
+                </li>
+                <li>
+                    <a href="{{ absolute_url("https://scrutinizer-ci.com/g/Jawnta/MVC/?branch=main") }}">Scrutinizer</a>
+                </li>
+                <li>
+                    <a href="{{ absolute_url("https://github.com/Jawnta/MVC") }}">GitHub</a>
+                </li>
+            </ul>
         </div>
     </div>
 {% endblock %}
