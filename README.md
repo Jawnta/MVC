@@ -27,4 +27,4 @@ MVC projekt. Fem korts poker med databas.
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Jawnta/MVC/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/Jawnta/MVC/?branch=main)
 [![Code Coverage](https://scrutinizer-ci.com/g/Jawnta/MVC/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/Jawnta/MVC/?branch=main)
-[![Code Coverage](https://scrutinizer-ci.com/g/Jawnta/MVC/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/Jawnta/MVC/?branch=main)
+[![Build Status](https://scrutinizer-ci.com/g/Jawnta/MVC/badges/build.png?b=main)](https://scrutinizer-ci.com/g/Jawnta/MVC/build-status/main)
