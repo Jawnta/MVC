@@ -26,3 +26,5 @@ MVC projekt. Fem korts poker med databas.
 Återställer alla värden som sparas i sessionen.
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Jawnta/MVC/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/Jawnta/MVC/?branch=main)
+[![Code Coverage](https://scrutinizer-ci.com/g/Jawnta/MVC/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/Jawnta/MVC/?branch=main)
+[![Code Coverage](https://scrutinizer-ci.com/g/Jawnta/MVC/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/Jawnta/MVC/?branch=main)
