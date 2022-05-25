@@ -1,6 +1,11 @@
 # MVC
 MVC innehåller alla kursmoment från kursen MVC.
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Jawnta/MVC/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/Jawnta/MVC/?branch=main) [![Code Coverage](https://scrutinizer-ci.com/g/Jawnta/MVC/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/Jawnta/MVC/?branch=main) [![Build Status](https://scrutinizer-ci.com/g/Jawnta/MVC/badges/build.png?b=main)](https://scrutinizer-ci.com/g/Jawnta/MVC/build-status/main)
+
+
+
+
 ### Report
 Under report så finns redovisningstexter från kursmoment 1 - kursmoment 10.
 
@@ -25,6 +30,4 @@ MVC projekt. Fem korts poker med databas.
 ### Reset session
 Återställer alla värden som sparas i sessionen.
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Jawnta/MVC/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/Jawnta/MVC/?branch=main)
-[![Code Coverage](https://scrutinizer-ci.com/g/Jawnta/MVC/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/Jawnta/MVC/?branch=main)
-[![Build Status](https://scrutinizer-ci.com/g/Jawnta/MVC/badges/build.png?b=main)](https://scrutinizer-ci.com/g/Jawnta/MVC/build-status/main)
+
