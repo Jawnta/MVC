@@ -24,3 +24,5 @@ MVC projekt. Fem korts poker med databas.
 
 ### Reset session
 Återställer alla värden som sparas i sessionen.
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Jawnta/MVC/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/Jawnta/MVC/?branch=main)
